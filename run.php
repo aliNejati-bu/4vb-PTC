@@ -6,16 +6,35 @@ require_once BASE_DIR . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "
 
 require_once BASE_DIR . DIRECTORY_SEPARATOR . "Boot" . DIRECTORY_SEPARATOR . "Boot.php";
 Boot::generalBoot();
-
+Boot::BootDataBase();
 if ($argc == 1) {
     echo "invalid";
 } elseif ($argv[1] == "seeder") {
     echo "seeder";
     die();
 } elseif ($argv[1] == "start") {
-    echo "start";
+    echo "creating databases..." . PHP_EOL;
+    require_once BASE_DIR . DIRECTORY_SEPARATOR . "Database" . DIRECTORY_SEPARATOR . "schemas.php";
+    echo "database created." . PHP_EOL;
+    echo "------------------------------------------" . PHP_EOL;
+    echo "seeding...";
+    (new \PTC\Database\Seed\DataBaseSeeder())->seeders();
+    echo "seeded";
     die();
 } elseif ($argv[1] == "reset") {
-    echo "reset";
+    echo "freshing...";
+    \Illuminate\Database\Capsule\Manager::schema()->dropAllTables();
+    echo "database freshed" . PHP_EOL;
+    echo "------------------------------------------" . PHP_EOL;
+    echo "creating databases..." . PHP_EOL;
+    require_once BASE_DIR . DIRECTORY_SEPARATOR . "Database" . DIRECTORY_SEPARATOR . "schemas.php";
+    echo "database created." . PHP_EOL;
+    echo "------------------------------------------" . PHP_EOL;
+    echo "seeding...";
+    (new \PTC\Database\Seed\DataBaseSeeder())->seeders();
+    echo "seeded";
+    die();
+}else{
+    echo "invalid command";
     die();
 }
