@@ -14,6 +14,8 @@ class Boot
             if (file_exists($file)) require_once $file;
         });
 
+        require_once BASE_DIR . DIRECTORY_SEPARATOR . "Helpers" . DIRECTORY_SEPARATOR . "functions.php";
+
         $router = new RouteCollector();
 
         require_once BASE_DIR . DIRECTORY_SEPARATOR . "Router" . DIRECTORY_SEPARATOR . "web.php";
@@ -22,6 +24,10 @@ class Boot
 
         $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
+
+        if ($response instanceof \PTC\Classes\Redirect) {
+            $response->exec();
+        }
         echo $response;
     }
 }
