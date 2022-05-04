@@ -7,7 +7,7 @@ class Boot
     public static function load()
     {
         spl_autoload_register(function ($class) {
-            $class = str_replace('Electro\\', "", $class);
+            $class = str_replace('PTC\\', "", $class);
             $file = BASE_DIR . DIRECTORY_SEPARATOR .
                 str_replace("\\", DIRECTORY_SEPARATOR, $class) . // replace \ in class namespace to DIRECTORY_SEPARATOR
                 ".php";
