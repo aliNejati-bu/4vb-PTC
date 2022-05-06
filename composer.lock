@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8dd054cae3437d63b78586700e32ea4",
+    "content-hash": "189a542b52f5ea03b64a4dfb81c9a8de",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -728,6 +728,58 @@
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
             "time": "2021-10-29T13:26:27+00:00"
+        },
+        {
+            "name": "somnambulist/validation",
+            "version": "1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/somnambulist-tech/validation.git",
+                "reference": "6c53b8cbe08604465e3476354af105b2f1d5faa6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/somnambulist-tech/validation/zipball/6c53b8cbe08604465e3476354af105b2f1d5faa6",
+                "reference": "6c53b8cbe08604465e3476354af105b2f1d5faa6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "~3.1.0",
+                "phpunit/phpunit": "~9.5",
+                "ramsey/uuid": "~4.1",
+                "symfony/var-dumper": "~5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Somnambulist\\Components\\Validation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Redfern",
+                    "email": "info@somnambulist.tech"
+                }
+            ],
+            "description": "A re-write of rakit/validation providing Laravel like validation as a standalone library",
+            "keywords": [
+                "php",
+                "symfony",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/somnambulist-tech/validation/issues",
+                "source": "https://github.com/somnambulist-tech/validation/tree/1.3.1"
+            },
+            "time": "2022-04-19T16:55:54+00:00"
         },
         {
             "name": "symfony/console",

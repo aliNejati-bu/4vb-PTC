@@ -1,6 +1,7 @@
 {
     "require": {
         "phroute/phroute": "^2.1",
-        "illuminate/database": "^9.11"
+        "illuminate/database": "^9.11",
+        "somnambulist/validation": "^1.3"
     }
 }
