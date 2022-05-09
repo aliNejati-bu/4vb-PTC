@@ -29,4 +29,12 @@ class User extends Model
     {
         return $this->hasMany(PhoneCode::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function emailLinks(): HasMany
+    {
+        return $this->hasMany(EmailLink::class);
+    }
 }

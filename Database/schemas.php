@@ -26,6 +26,7 @@ Capsule::schema()->create('phone_codes', function (\Illuminate\Database\Schema\B
 
 Capsule::schema()->create('email_links', function (\Illuminate\Database\Schema\Blueprint $blueprint) {
     $blueprint->id();
+    $blueprint->string("slug")->unique();
     $blueprint->dateTime('expire_at');
     $blueprint->boolean('is_used');
     $blueprint->bigInteger("user_id")->unsigned();
