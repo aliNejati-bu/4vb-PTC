@@ -34,4 +34,12 @@ class Slug extends Model
     {
         return $this->hasMany(Link::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function clicks(): HasMany
+    {
+        return $this->hasMany(Click::class);
+    }
 }

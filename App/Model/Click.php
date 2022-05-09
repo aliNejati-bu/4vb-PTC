@@ -5,18 +5,18 @@ namespace PTC\App\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Link extends Model
+class Click extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-
     protected $fillable = [
-        "target_link",
-        "slug_id"
+        "clicker_ip",
+        "slug_id",
+        "link_id",
+        "refer"
     ];
 
     /**
@@ -28,11 +28,11 @@ class Link extends Model
     }
 
     /**
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function clicks(): HasMany
+    public function link(): BelongsTo
     {
-        return $this->hasMany(Click::class);
+        return $this->belongsTo(Link::class);
     }
 
 }
