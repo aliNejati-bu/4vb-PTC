@@ -8,8 +8,6 @@ class UserSeeder
 {
     public static function Seed()
     {
-        User::create([
-            "app" => "ali"
-        ]);
+        
     }
 }
