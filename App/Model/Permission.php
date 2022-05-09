@@ -7,28 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Permission extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
-        "role_name"
+        "permission_name",
+        "persian_name"
     ];
 
     /**
      * @return BelongsToMany
      */
-    public function users(): BelongsToMany
+    public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
-    }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function permissions(): BelongsToMany
-    {
-        return $this->belongsToMany(Permission::class);
+        return $this->belongsToMany(Role::class);
     }
 }
