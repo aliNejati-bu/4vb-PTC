@@ -6,11 +6,17 @@ Capsule::schema()->create('users', function (\Illuminate\Database\Schema\Bluepri
     $blueprint->id();
     $blueprint->string("user_email")->unique();
     $blueprint->string("password");
-    $blueprint->string("phone");
-    $blueprint->integer("user_type");
-    $blueprint->boolean("is_phone_verified");
-    $blueprint->boolean("is_email_verified");
-    $blueprint->boolean("is_super_admin");
+    $blueprint->string("phone")->nullable();
+    /*
+     * user type for present type of user account
+     * 0: common
+     * 1: silver
+     * 2: gold
+     */
+    $blueprint->enum("user_type", [0, 1, 2])->default(0);
+    $blueprint->boolean("is_phone_verified")->default(false);
+    $blueprint->boolean("is_email_verified")->default(false);
+    $blueprint->boolean("is_super_admin")->default(false);
     $blueprint->timestamps();;
 });
 

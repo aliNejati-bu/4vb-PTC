@@ -23,6 +23,10 @@ class User extends Model
         "is_super_admin"
     ];
 
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = !is_null($value) ? password_hash($value,PASSWORD_BCRYPT) : $this->password;
+    }
     /**
      * @return HasMany
      */
