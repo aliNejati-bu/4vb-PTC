@@ -37,4 +37,15 @@ class User extends Model
     {
         return $this->hasMany(EmailLink::class);
     }
+
+
+    /**
+     * @return HasMany
+     */
+    public function slugs(): HasMany
+    {
+        return $this->hasMany(Slug::class);
+    }
+
+
 }
