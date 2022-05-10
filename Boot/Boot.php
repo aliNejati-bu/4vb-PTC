@@ -2,11 +2,17 @@
 
 use Phroute\Phroute\RouteCollector;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use PTC\Classes\Exception\ViewNotFoundedException;
+use PTC\Classes\Redirect;
+use PTC\Classes\ViewEngine;
 
 class Boot
 {
     private static array $kernelOptions = [];
 
+    /**
+     * @throws ViewNotFoundedException
+     */
     public static function load()
     {
         self::generalBoot();
@@ -22,7 +28,11 @@ class Boot
         $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 
-        if ($response instanceof \PTC\Classes\Redirect) {
+        if ($response instanceof ViewEngine) {
+            $response = $response->render();
+        }
+
+        if ($response instanceof Redirect) {
             $response->exec();
         }
         echo $response;
@@ -45,8 +55,7 @@ class Boot
     {
 
         $capsule = new Capsule;
-        $dataBaseConfig = require_once BASE_DIR . DIRECTORY_SEPARATOR . "config" . DIRECTORY_SEPARATOR . "database.php";
-
+        $dataBaseConfig = \PTC\Classes\Config::getInstance()->getAllConfig("database");
         $capsule->addConnection([
 
             "driver" => "mysql",

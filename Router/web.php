@@ -6,5 +6,6 @@ use Phroute\Phroute\RouteCollector;
  */
 
 $router->get("/",function (){
-    return (new \PTC\App\Controller\ExampleController())->index();
+    $name = "Welcome";
+    return view("index",compact("name"));
 });
