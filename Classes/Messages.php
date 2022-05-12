@@ -67,7 +67,7 @@ class Messages
         return $this;
     }
 
-    public static function getInstance()
+    public static function getInstance(): Messages
     {
         if (self::$massages == null) {
             self::$massages = new self();
@@ -75,4 +75,9 @@ class Messages
         return self::$massages;
     }
 
+
+    public function getError(string $errorName, mixed $default = false)
+    {
+        return $this->errors[$errorName] ?? $default;
+    }
 }

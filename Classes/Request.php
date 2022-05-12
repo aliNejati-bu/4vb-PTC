@@ -8,16 +8,39 @@ use Somnambulist\Components\Validation\Validation;
 class Request
 {
 
+    /**
+     * @var Request|null
+     */
+    private static ?Request $request = null;
+
+    /**
+     * @var array
+     */
     private array $validated = [];
 
+    /**
+     * @var bool
+     */
     private bool $isValidatorError = false;
 
+    /**
+     * @var bool
+     */
     private bool $isValidated = false;
 
+    /**
+     * @var array
+     */
     private array $errors = [];
 
+    /**
+     * @var array
+     */
     private array $invalidData = [];
 
+    /**
+     * @param Validator $validator
+     */
     public function __construct(private Validator $validator)
     {
     }
@@ -33,16 +56,26 @@ class Request
 
     /**
      * @param string $name
+     * @param bool $isRedirectBack
      * @return Validation
      * @throws Exception\ValidatorNotFoundException
-     * @throws \Exception
      */
-    public function validatePostsAndFiles(string $name): Validation
+    public function validatePostsAndFiles(string $name, bool $isRedirectBack = true): Validation
     {
         $preparer = $this->validator->makeFromValidator($this->allPost(), $name);
         $validateResult = $preparer->validate();
         $this->isValidated = true;
         if ($validateResult->fails()) {
+            if ($isRedirectBack) {
+                $redirect = redirect(back());
+                foreach ($validateResult->errors()->firstOfAll() as $name => $value) {
+                    $redirect->with($name, $value);
+                }
+                foreach ($validateResult->getValidData() as $key => $value) {
+                    $redirect->withMessage($key, $value);
+                }
+                $redirect->exec();
+            }
             $this->isValidatorError = true;
             $this->errors = $validateResult->errors()->firstOfAll();
             $this->validated = $validateResult->getValidData();
@@ -95,5 +128,14 @@ class Request
         return $this->invalidData;
     }
 
+    /**
+     * @return Request
+     */
+    public static function getInstance(): Request
+    {
+        if (is_null(self::$request))
+            self::$request = new self(Validator::getInstance());
+        return self::$request;
+    }
 
 }

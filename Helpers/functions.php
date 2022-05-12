@@ -14,3 +14,29 @@ function view(string $name, array $vars = []): ViewEngine
 {
     return ViewEngine::getInstance($name, $vars);
 }
+
+/**
+ * @return mixed
+ */
+function back(): mixed
+{
+    return $_SERVER["HTTP_REFERER"] ?? "javascript:history.go(-1)";
+}
+
+/**
+ * @return array|mixed|string[]
+ */
+function errors(): array
+{
+    return \PTC\Classes\Messages::getInstance()->errors;
+}
+
+/**
+ * @param string $name
+ * @param bool $default
+ * @return mixed
+ */
+function error(string $name, bool $default = false): mixed
+{
+    return \PTC\Classes\Messages::getInstance()->getError($name, $default);
+}

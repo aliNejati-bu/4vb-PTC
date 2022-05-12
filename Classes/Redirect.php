@@ -38,10 +38,10 @@ class Redirect
     /**
      * for add message
      * @param string $messageName
-     * @param string $messageVale
+     * @param string|null $messageVale
      * @return $this
      */
-    public function withMessage(string $messageName, string $messageVale): Redirect
+    public function withMessage(string $messageName, ?string $messageVale): Redirect
     {
         $this->messages[$messageName] = $messageVale;
         return $this;
