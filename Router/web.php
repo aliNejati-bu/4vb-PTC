@@ -7,7 +7,9 @@ use Phroute\Phroute\RouteCollector;
  */
 
 $router->get("/", function () {
-    var_dump(\PTC\Classes\Mail::getInstance()->send(["electrocellco9@gmail.com"], "test Email", "PHP MAILER", "hi ali", "html not supported,"));
+    $res = \PTC\Classes\Validator\Validator::getInstance()->makeFromValidator($_FILES + $_POST,"testValidator");
+    $res = $res->validate();
+    var_dump($res->errors()->firstOfAll());
     die();
     $name = "Welcome";
     return view("index", compact("name"));
