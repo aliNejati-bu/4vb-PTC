@@ -108,10 +108,7 @@ class Validator
      */
     public static function getInstance(): static
     {
-        if (is_null(self::$validator)) {
-            self::$validator = new self(Config::getInstance());
-        }
-        return self::$validator;
+        return new self(Config::getInstance());
     }
 
 }
