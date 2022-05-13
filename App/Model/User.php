@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
         "user_email",

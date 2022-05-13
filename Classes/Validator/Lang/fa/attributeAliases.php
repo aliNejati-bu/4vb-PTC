@@ -8,5 +8,6 @@ return [
     "phone_number" => "شماره تلفن",
     "confirm_password" => "تایید رمز عبور",
     "date" => "تاریخ",
-    "avatar" => "آواتار"
+    "avatar" => "آواتار",
+    "user_email" => "ایمیل",
 ];

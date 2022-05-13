@@ -11,6 +11,7 @@ return [
 
     // default variables passed to views
     "default_variables" => [
-
+        "base" => BASE_DIR . DIRECTORY_SEPARATOR . "views",
+        "dirSep" => DIRECTORY_SEPARATOR
     ],
 ];
