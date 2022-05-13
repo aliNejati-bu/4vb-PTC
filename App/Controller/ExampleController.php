@@ -4,7 +4,7 @@ namespace PTC\App\Controller;
 
 class ExampleController
 {
-    public function index()
+    public function getIndex(): string
     {
         return "index";
     }

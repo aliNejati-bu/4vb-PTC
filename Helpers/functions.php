@@ -40,3 +40,15 @@ function error(string $name, bool $default = false): mixed
 {
     return \PTC\Classes\Messages::getInstance()->getError($name, $default);
 }
+
+function route($name, ...$params)
+{
+    if (!isset(\PTC\Classes\Config::getInstance()->getAllConfig('app')["routes"][$name])) {
+        return '/';
+    }
+    $route = \PTC\Classes\Config::getInstance()->getAllConfig('app')["routes"][$name];
+    foreach ($params as $param) {
+        $route = str_replace("!-!", $param, $route);
+    }
+    return $route;
+}
