@@ -1,4 +1,6 @@
 <?php
+$startRequest = microtime(true);
+
 session_start();
 
 # load composer autoload
@@ -11,3 +13,5 @@ require_once BASE_DIR . DIRECTORY_SEPARATOR . "Boot" . DIRECTORY_SEPARATOR . "Bo
 
 // boot project
 Boot::load();
+$endRequest = microtime(true);
+

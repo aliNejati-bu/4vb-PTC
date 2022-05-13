@@ -48,7 +48,7 @@ class ViewEngine
             $$name = $value;
         }
         $baseDir = $this->config->getAllConfig("view")["baseViewDirectory"];
-        $viewPath = $baseDir . DIRECTORY_SEPARATOR . $this->viewName . ".php";
+        $viewPath = $baseDir . DIRECTORY_SEPARATOR . str_replace(">",DIRECTORY_SEPARATOR,$this->viewName) . ".php";
         if (!file_exists($viewPath)) {
             throw new ViewNotFoundedException($viewPath);
         }
