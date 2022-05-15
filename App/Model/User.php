@@ -24,8 +24,9 @@ class User extends Model
 
     public function setPasswordAttribute($value)
     {
-        $this->attributes['password'] = !is_null($value) ? password_hash($value,PASSWORD_BCRYPT) : $this->password;
+        $this->attributes['password'] = !is_null($value) ? password_hash($value, PASSWORD_BCRYPT) : $this->password;
     }
+
     /**
      * @return HasMany
      */
@@ -68,6 +69,15 @@ class User extends Model
         return $this->belongsToMany(Role::class);
     }
 
+
+    public static function getUserByEmailAndPassword(string $email, string $password)
+    {
+        $user = self::where("user_email", $email)->first();
+        if (!$user || !password_verify($password, $user->password)) {
+            return false;
+        }
+        return $user;
+    }
 
 
 }

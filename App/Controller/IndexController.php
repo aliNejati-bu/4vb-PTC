@@ -35,10 +35,29 @@ class IndexController
             return redirect(route('login'))->withMessage("login", "ورود با موفقیت انجام شد.");
         }
         return redirect(back())->with("error", "متاسفانه کاربر ایجاد نشد.");
+
+        // TODO:: برسی فعال بودن تیک قوانین ما
     }
 
-    public function getLogin()
+    /**
+     * @return ViewEngine
+     */
+    public function getLogin(): ViewEngine
     {
-        return "login";
+        $title = "ورود";
+        return view("auth>login", compact("title"));
+    }
+
+
+    /**
+     * @throws ValidatorNotFoundException
+     */
+    public function postLogin()
+    {
+        request()->validatePostsAndFiles("auth" . DIRECTORY_SEPARATOR . "loginValidator");
+        $user = User::getUserByEmailAndPassword(request()->getValidated()["email"], request()->getValidated()["password"]);
+        if (!$user) {
+            return \redirect(back())->with("error", "نام کاربری و رمز عبور همخوانی ندارد.");
+        }
     }
 }
