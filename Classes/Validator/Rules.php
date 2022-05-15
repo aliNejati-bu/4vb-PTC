@@ -23,7 +23,7 @@ class Rules
         return function ($value) use ($model, $field): bool|string {
             $result = $model::where($field, $value)->first();
             if (!is_null($result)) {
-                return self::getMassage('rule.unique');
+                return 'rule.unique';
             }
             return true;
         };

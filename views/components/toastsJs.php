@@ -1,17 +1,24 @@
-
-
-
 <script src="assets/libs/jquery-toast/jquery.toast.min.js"></script>
 
-<script>
+<?php
+if (isError()) {
+    ?>
+    <script>
 
-    $.toast({
-        heading: "آه ضربه محکم و ناگهانی!",
-        text: "چند مورد را تغییر دهید و دوباره ارسال کنید.",
-        position: "top-right",
-        loaderBg: "#bf441d",
-        icon: "error",
-        hideAfter: 3e3,
-        stack: 1
-    })
-</script>
+        $.toast({
+            heading: "خطا در ارسال اطلاعات",
+            text: "<ul><?php
+                foreach (errors() as $error) {
+                    echo "<li>" . $error . "</li><br>";
+                }
+                ?></ul>",
+            position: "top-right",
+            loaderBg: "#bf441d",
+            icon: "error",
+            hideAfter: 3e3,
+            stack: 1
+        })
+    </script>
+    <?php
+}
+?>

@@ -75,6 +75,10 @@ class Messages
         return self::$massages;
     }
 
+    public function isError()
+    {
+        return count($this->errors) != 0;
+    }
 
     public function getError(string $errorName, mixed $default = false)
     {

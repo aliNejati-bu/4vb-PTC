@@ -76,7 +76,8 @@ class Validator
      */
     public function validate(): Validation
     {
-        $validatorFactory = new Factory();
+        $validation = (new Factory)->make($this->input,$this->rules);
+
         $appLang = $this->config->getAllConfig("app")["lang"] ?? "fa";
 
         $langPath = BASE_DIR . DIRECTORY_SEPARATOR . "Classes" . DIRECTORY_SEPARATOR . "Validator" . DIRECTORY_SEPARATOR . "Lang" . DIRECTORY_SEPARATOR . $appLang;
@@ -88,18 +89,20 @@ class Validator
             throw new \Exception($langPath . " is not lang!.");
         }
 
+
         $langArray = require $langPath . DIRECTORY_SEPARATOR . "lang.php";
         $attributes = require $langPath . DIRECTORY_SEPARATOR . "attributeAliases.php";
 
 
-        $validatorFactory->messages()->add($appLang, $langArray);
-        $made = $validatorFactory->make($this->input, $this->rules);
+        $validation->messages()->add($appLang, $langArray);
+
+
         foreach ($attributes as $key => $value) {
-            $made->setAlias($key, $value);
+            $validation->setAlias($key, $value);
         }
 
-        $made->setLanguage($appLang)->validate();
-        return $made;
+        $validation->setLanguage($appLang)->validate();
+        return $validation;
     }
 
 

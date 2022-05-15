@@ -2,7 +2,9 @@
 
 
 use JetBrains\PhpStorm\Pure;
+use PTC\Classes\Messages;
 use PTC\Classes\Redirect;
+use PTC\Classes\Request;
 use PTC\Classes\ViewEngine;
 
 #[Pure] function redirect(string $target): Redirect
@@ -28,7 +30,7 @@ function back(): mixed
  */
 function errors(): array
 {
-    return \PTC\Classes\Messages::getInstance()->errors;
+    return Messages::getInstance()->errors;
 }
 
 /**
@@ -38,7 +40,7 @@ function errors(): array
  */
 function error(string $name, bool $default = false): mixed
 {
-    return \PTC\Classes\Messages::getInstance()->getError($name, $default);
+    return Messages::getInstance()->getError($name, $default);
 }
 
 function route($name, ...$params)
@@ -51,4 +53,20 @@ function route($name, ...$params)
         $route = str_replace("!-!", $param, $route);
     }
     return $route;
+}
+
+/**
+ * @return bool
+ */
+function isError(): bool
+{
+    return Messages::getInstance()->isError();
+}
+
+/**
+ * @return Request
+ */
+function request(): Request
+{
+    return Request::getInstance();
 }

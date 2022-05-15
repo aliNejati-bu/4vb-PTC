@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
 return [
-    'and' => 'and',
-    'or' => 'or',
-
     'rule.default' => ':attribute معتبر نیست.',
     'rule.accepted' => ':attribute باید یکی از موارد: :accepted باشد.',
     'rule.after' => ':attribute حتما باید بعد از زمان :time باشد.',
@@ -34,7 +31,7 @@ return [
     'rule.lowercase' => ':attribute must be lowercase',
     'rule.max' => ':attribute maximum is :max',
     'rule.mimes' => ':attribute file type must be :allowed_types',
-    'rule.min' => ':attribute minimum is :min',
+    'rule.min' => ':attribute باید از :min رقم/تعداد بیشتر باشد.',
     'rule.not_in' => ':attribute نباید مقداری :  :disallowed_values باشد.',
     'rule.numeric' => ':attribute حتما باید عددی باشد.',
     'rule.phone_number' => ':attribute is not a valid E.164 phone number',
@@ -53,7 +50,7 @@ return [
     'rule.required_without_all' => ':attribute is required when :fields are all empty',
     'rule.same' => ':attribute و :field باید یکی باشد.',
     'rule.string' => ':attribute حتما باید مقدار نوشتاری باشد.',
-    'rule.unique' => ':attribute باید منحصر به فرد باشد, :value  از قبل وجود دارد.',
+    'rule.unique' => ':attribute باید منحصر به فرد باشد.',
     'rule.uploaded_file' => ':attribute یک فایل معتبر قابل بارگزاری نیست.',
     'rule.uploaded_file.min_size' => ':attribute فایل بارگزاری شده کم حجم است. حداقل حجم قابل قبول: :min_size',
     'rule.uploaded_file.max_size' => ':attribute حجیم تر از مقدار در نظر گرفته شده برای بارگزاری است حداکثر حجم مجاز برابر است با :  :max_size',
