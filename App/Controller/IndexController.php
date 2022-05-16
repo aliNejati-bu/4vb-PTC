@@ -2,6 +2,8 @@
 
 namespace PTC\App\Controller;
 
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use PTC\App\Model\User;
 use PTC\Classes\Exception\ValidatorNotFoundException;
 use PTC\Classes\Redirect;
@@ -12,7 +14,15 @@ class IndexController
 {
     public function getIndex(): ViewEngine
     {
-        $name = "Welcome";
+        $key = "iv";
+        $payload = [
+            'iat' => time(),
+            'exp' => time() + 10
+        ];
+        $jwt = JWT::encode($payload, $key, 'HS256');
+
+
+        $name = $jwt;
         return view("index", compact("name"));
     }
 
@@ -60,4 +70,6 @@ class IndexController
             return \redirect(back())->with("error", "نام کاربری و رمز عبور همخوانی ندارد.");
         }
     }
+
+
 }
