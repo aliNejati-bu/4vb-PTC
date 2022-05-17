@@ -5,6 +5,7 @@ namespace PTC\App\Controller;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use PTC\App\Model\User;
+use PTC\Classes\Auth;
 use PTC\Classes\Exception\ValidatorNotFoundException;
 use PTC\Classes\Redirect;
 use PTC\Classes\Request;
@@ -14,15 +15,8 @@ class IndexController
 {
     public function getIndex(): ViewEngine
     {
-        $key = "iv";
-        $payload = [
-            'iat' => time(),
-            'exp' => time() + 10
-        ];
-        $jwt = JWT::encode($payload, $key, 'HS256');
-
-
-        $name = $jwt;
+        var_dump($_SESSION);
+        die();
         return view("index", compact("name"));
     }
 
@@ -65,11 +59,17 @@ class IndexController
     public function postLogin()
     {
         request()->validatePostsAndFiles("auth" . DIRECTORY_SEPARATOR . "loginValidator");
-        $user = User::getUserByEmailAndPassword(request()->getValidated()["email"], request()->getValidated()["password"]);
-        if (!$user) {
-            return \redirect(back())->with("error", "نام کاربری و رمز عبور همخوانی ندارد.");
+        $auth = new Auth();
+        $loginStatus = $auth->doLogin(
+            Request::getInstance()->getValidated()["email"],
+            Request::getInstance()->getValidated()["password"]
+        );
+        if (!$loginStatus){
+            return redirect(back())->with("error","نام کاربری و رمز عبور همخوانی ندارد.");
         }
+        return redirect(route("panel"))->withMessage('m',"ورود موفقیت آمیز بود.");
     }
+
 
 
 }

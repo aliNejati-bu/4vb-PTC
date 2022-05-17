@@ -1,7 +1,9 @@
 <?php
 $startRequest = microtime(true);
 
-session_start();
+session_start([
+    "cookie_lifetime" => 31536000
+]);
 
 # load composer autoload
 require_once __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "autoload.php";

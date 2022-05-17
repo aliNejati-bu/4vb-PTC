@@ -112,3 +112,14 @@ Capsule::schema()->create("permission_role", function (\Illuminate\Database\Sche
     $blueprint->foreign("permission_id")->references("id")->on("permissions")->onDelete("cascade");
     $blueprint->foreign("role_id")->references("id")->on("roles")->onDelete("cascade");
 });
+
+
+Capsule::schema()->create("user_session_activities", function (\Illuminate\Database\Schema\Blueprint $blueprint) {
+    $blueprint->id();
+    $blueprint->bigInteger("user_id")->unsigned();
+    $blueprint->text("token");
+    $blueprint->timestamps();
+
+    $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
+});
+

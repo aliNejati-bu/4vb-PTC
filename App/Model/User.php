@@ -80,4 +80,11 @@ class User extends Model
     }
 
 
+    /**
+     * @return BelongsToMany
+     */
+    public function userSessionActivities(): BelongsToMany
+    {
+        return $this->belongsToMany(UserSessionActivity::class);
+    }
 }

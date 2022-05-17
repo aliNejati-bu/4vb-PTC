@@ -7,6 +7,7 @@ return [
     'routes' => [
         'index' => '/',
         'signup' => "/sign-up",
-        'login' => '/login'
+        'login' => '/login',
+        'panel' => '/panel'
     ],
 ];
