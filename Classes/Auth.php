@@ -12,6 +12,8 @@ class Auth
         if (!$user) {
             return false;
         }
+        $authConfig = Config::getInstance()->getAllConfig("auth");
+
     }
 
     private function setCookieAndSessions(User $user)
