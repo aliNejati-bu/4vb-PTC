@@ -69,7 +69,7 @@
                                         <div class="col-12">
 
                                             <div class="checkbox checkbox-success">
-                                                <input id="remember" type="checkbox" checked="">
+                                                <input id="remember" type="checkbox" checked="" name="isLong" value="1">
                                                 <label for="remember">
                                                     مرا به خاطر بسپار
                                                 </label>

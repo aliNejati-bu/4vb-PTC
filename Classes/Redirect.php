@@ -52,7 +52,7 @@ class Redirect
         $errors = array_merge($this->errors, Messages::getInstance()->errors);
         $_SESSION["errors"] = $errors;
         $messages = array_merge($this->messages, Messages::getInstance()->messages);
-        $_SESSION["message"] = $messages;
+        $_SESSION["messages"] = $messages;
         header("Location: " . $this->target);
         die();
     }

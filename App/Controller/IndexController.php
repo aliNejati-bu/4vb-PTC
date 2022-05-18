@@ -62,14 +62,14 @@ class IndexController
         $auth = new Auth();
         $loginStatus = $auth->doLogin(
             Request::getInstance()->getValidated()["email"],
-            Request::getInstance()->getValidated()["password"]
+            Request::getInstance()->getValidated()["password"],
+            Request::getInstance()->getValidated()["isLong"] == "1"
         );
-        if (!$loginStatus){
-            return redirect(back())->with("error","نام کاربری و رمز عبور همخوانی ندارد.");
+        if (!$loginStatus) {
+            return redirect(back())->with("error", "نام کاربری و رمز عبور همخوانی ندارد.");
         }
-        return redirect(route("panel"))->withMessage('m',"ورود موفقیت آمیز بود.");
+        return redirect(route("panel"))->withMessage('m', "ورود موفقیت آمیز بود.");
     }
-
 
 
 }
