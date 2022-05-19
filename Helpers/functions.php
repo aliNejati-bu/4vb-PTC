@@ -2,6 +2,7 @@
 
 
 use JetBrains\PhpStorm\Pure;
+use PTC\Classes\Auth;
 use PTC\Classes\Messages;
 use PTC\Classes\Redirect;
 use PTC\Classes\Request;
@@ -69,4 +70,12 @@ function isError(): bool
 function request(): Request
 {
     return Request::getInstance();
+}
+
+/**
+ * @return Auth|null
+ */
+function auth(): ?Auth
+{
+    return \request()->auth;
 }
