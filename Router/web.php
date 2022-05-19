@@ -1,6 +1,7 @@
 <?php
 
 use Phroute\Phroute\RouteCollector;
+use PTC\App\Controller\PanelController;
 
 /**
  * @var RouteCollector $router
@@ -9,7 +10,6 @@ use Phroute\Phroute\RouteCollector;
 
 $router->controller(route("index"), \PTC\App\Controller\IndexController::class);
 
-$router->get(route("panel"), function (){
-   var_dump(request()->auth);
-   10/0;
-},["before"=>"authMiddleware"]);
+$router->get(route("panel"), function () {
+    return (new PanelController)->index();
+}, ["before" => "authMiddleware"]);

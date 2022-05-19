@@ -79,5 +79,4 @@ class Auth
         return self::$auth;
     }
 
-
 }

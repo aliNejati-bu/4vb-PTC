@@ -17,6 +17,7 @@ Capsule::schema()->create('users', function (\Illuminate\Database\Schema\Bluepri
     $blueprint->boolean("is_phone_verified")->default(false);
     $blueprint->boolean("is_email_verified")->default(false);
     $blueprint->boolean("is_super_admin")->default(false);
+    $blueprint->boolean("is_admin")->default(false);
     $blueprint->string("name");
     $blueprint->timestamps();;
 });
