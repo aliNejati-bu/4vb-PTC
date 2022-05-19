@@ -19,7 +19,8 @@ class User extends Model
         "user_type",
         "is_phone_verified",
         "is_email_verified",
-        "is_super_admin"
+        "is_super_admin",
+        'name'
     ];
 
     public function setPasswordAttribute($value)
