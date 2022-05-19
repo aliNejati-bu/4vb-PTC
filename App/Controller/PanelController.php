@@ -12,6 +12,7 @@ class PanelController
      */
     public function index(): ViewEngine
     {
-        return view("panel>panel");
+        $currentPage = "panel";
+        return view("panel>panel",compact("currentPage"));
     }
 }
