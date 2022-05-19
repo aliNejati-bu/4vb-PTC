@@ -79,3 +79,13 @@ function auth(): ?Auth
 {
     return \request()->auth;
 }
+
+/**
+ * @param string $viewName
+ * @return string
+ */
+function viewPath(string $viewName): string
+{
+    $baseViewPath = \PTC\Classes\Config::getInstance()->getAllConfig("view")["baseViewDirectory"];
+    return $baseViewPath . DIRECTORY_SEPARATOR . str_replace(">", DIRECTORY_SEPARATOR, $viewName) . ".php";
+}
