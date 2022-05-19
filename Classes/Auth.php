@@ -13,6 +13,12 @@ class Auth
      */
     public ?User $userModel = null;
 
+
+    /**
+     * @var Auth|null
+     */
+    public static ?Auth $auth = null;
+
     /**
      * @param string $email
      * @param string $password
@@ -39,7 +45,7 @@ class Auth
                 'exp' => $exp,
                 'id' => $user->id
             ];
-            $token = JWT::encode($payload, $key, 'HS256');
+            $token = JWT::encode($payload, $key, $authConfig["jwt_alg"]);
 
             $_SESSION[$authConfig["access_token_session_name"]] = $token;
 
@@ -52,5 +58,26 @@ class Auth
             return false;
         }
     }
+
+    /**
+     * @param $userId
+     * @return Auth
+     */
+    public function createUSer($userId): static
+    {
+        $user = User::find($userId);
+        $this->userModel = $user;
+        self::$auth = $this;
+        return $this;
+    }
+
+    /**
+     * @return Auth|null
+     */
+    public static function getInstance(): ?Auth
+    {
+        return self::$auth;
+    }
+
 
 }

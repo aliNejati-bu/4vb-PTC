@@ -8,6 +8,7 @@ use Somnambulist\Components\Validation\Validation;
 class Request
 {
 
+    public ?Auth $auth = null;
     /**
      * @var Request|null
      */

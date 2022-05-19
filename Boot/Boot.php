@@ -17,6 +17,7 @@ class Boot
     {
         self::generalBoot();
         self::BootDataBase();
+        self::errorReporter();
         $router = new RouteCollector();
 
         self::PrepareMiddlewares($router);
@@ -87,5 +88,12 @@ class Boot
             $middlewareInstance = new $middleware;
             $router->filter($name, [$middlewareInstance, "run"]);
         }
+    }
+
+    public static function errorReporter()
+    {
+        $whoops = new \Whoops\Run;
+        $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+        $whoops->register();
     }
 }
