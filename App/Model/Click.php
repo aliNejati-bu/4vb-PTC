@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Click extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
         "clicker_ip",

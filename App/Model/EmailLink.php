@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class EmailLink extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
         "slug",

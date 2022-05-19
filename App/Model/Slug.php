@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Slug extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = [
         "slug",

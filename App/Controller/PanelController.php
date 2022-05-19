@@ -12,6 +12,8 @@ class PanelController
      */
     public function index(): ViewEngine
     {
+        var_dump(auth()->userModel->hasPermission("Users"));
+        die();
         return view("panel>panel");
     }
 }

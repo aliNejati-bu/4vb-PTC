@@ -87,4 +87,30 @@ class User extends Model
     {
         return $this->belongsToMany(UserSessionActivity::class);
     }
+
+    /**
+     * @return bool
+     */
+    public function isSuperAdmin(): bool
+    {
+        return boolval($this->is_super_admin);
+    }
+
+    /**
+     * @param string $permissionName
+     * @return bool
+     */
+    public function hasPermission(string $permissionName): bool
+    {
+        $roles = $this->roles()->get();
+        foreach ($roles as $role){
+            $permissions = $role->permissions()->get();
+            foreach ($permissions as $permission){
+                if ($permission->permission_name == $permissionName){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
