@@ -2,7 +2,9 @@
 
 namespace PTC\App\Controller\Admin;
 
+use PTC\App\Model\User;
 use PTC\Classes\Exception\ViewNotFoundedException;
+use PTC\Classes\ViewEngine;
 
 class UserController
 {
@@ -18,10 +20,12 @@ class UserController
         }
     }
 
-    public function getIndex()
+    /**
+     * @return ViewEngine
+     */
+    public function getIndex(): ViewEngine
     {
-        $currentPage = "panel";
-        $currentSubMenu = "index";
-        return view("panel>user>index",compact("currentPage","currentSubMenu"));
+        $users = User::all();
+        return view("panel>user>index",compact("users"));
     }
 }
