@@ -30,6 +30,7 @@ class Boot
             $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
         }catch (\Phroute\Phroute\Exception\HttpRouteNotFoundException $exception){
             $response = view(get404ViewName());
+            http_response_code(404);
         }
 
 
