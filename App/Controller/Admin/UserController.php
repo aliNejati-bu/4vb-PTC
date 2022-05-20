@@ -17,6 +17,7 @@ class UserController
             $result = view(get404ViewName())->render();
             http_response_code(404);
             echo $result;
+            die();
         }
     }
 
