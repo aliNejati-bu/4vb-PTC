@@ -89,3 +89,11 @@ function viewPath(string $viewName): string
     $baseViewPath = \PTC\Classes\Config::getInstance()->getAllConfig("view")["baseViewDirectory"];
     return $baseViewPath . DIRECTORY_SEPARATOR . str_replace(">", DIRECTORY_SEPARATOR, $viewName) . ".php";
 }
+
+/**
+ * @return string
+ */
+function get404ViewName(): string
+{
+    return \PTC\Classes\Config::getInstance()->getAllConfig("view")["404"];
+}

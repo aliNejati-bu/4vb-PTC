@@ -7,7 +7,6 @@ use PTC\Classes\Exception\ViewNotFoundedException;
 class ViewEngine
 {
 
-    public static ?ViewEngine $singletonView = null;
 
     /**
      * passed variables to view
@@ -64,10 +63,7 @@ class ViewEngine
      */
     public static function getInstance($viewName, array $variables): ViewEngine
     {
-        if (is_null(self::$singletonView)) {
-            self::$singletonView = new self($viewName, $variables, Config::getInstance());
-        }
-        return self::$singletonView;
+        return new self($viewName, $variables, Config::getInstance());
     }
 
 }

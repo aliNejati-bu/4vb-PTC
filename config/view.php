@@ -14,4 +14,5 @@ return [
         "base" => BASE_DIR . DIRECTORY_SEPARATOR . "views",
         "dirSep" => DIRECTORY_SEPARATOR
     ],
+    "404" => "err>404"
 ];

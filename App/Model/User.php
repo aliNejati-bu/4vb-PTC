@@ -20,6 +20,7 @@ class User extends Model
         "is_phone_verified",
         "is_email_verified",
         "is_super_admin",
+        'is_admin',
         'name'
     ];
 
@@ -104,14 +105,22 @@ class User extends Model
     public function hasPermission(string $permissionName): bool
     {
         $roles = $this->roles()->get();
-        foreach ($roles as $role){
+        foreach ($roles as $role) {
             $permissions = $role->permissions()->get();
-            foreach ($permissions as $permission){
-                if ($permission->permission_name == $permissionName){
+            foreach ($permissions as $permission) {
+                if ($permission->permission_name == $permissionName) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return boolval($this->is_admin);
     }
 }

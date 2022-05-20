@@ -10,6 +10,10 @@ use PTC\App\Controller\PanelController;
 
 $router->controller(route("index"), \PTC\App\Controller\IndexController::class);
 
-$router->get(route("panel"), function () {
-    return (new PanelController)->index();
-}, ["before" => "authMiddleware"]);
+$router->group(["before" => ["authMiddleware"],"prefix"=>route("panel")],function (RouteCollector $router){
+    $router->get("/", function () {
+        return (new PanelController)->index();
+    });
+    $router->controller("/user",\PTC\App\Controller\Admin\UserController::class);
+});
+

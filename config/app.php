@@ -8,6 +8,7 @@ return [
         'index' => '/',
         'signup' => "/sign-up",
         'login' => '/login',
-        'panel' => '/panel'
+        'panel' => '/panel',
+        'userList' => '/panel/user'
     ],
 ];

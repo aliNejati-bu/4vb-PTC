@@ -15,8 +15,10 @@
                         <span>داشبورد</span>
                     </a>
                 </li>
+                <?php if (auth()->userModel->isAdmin()): ?>
+                <li class="menu-title">مدیریت</li>
+                <?php endif; ?>
             </ul>
-
         </div>
         <!-- End Sidebar -->
 
