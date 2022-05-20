@@ -20,6 +20,8 @@ class UserController
 
     public function getIndex()
     {
-
+        $currentPage = "panel";
+        $currentSubMenu = "index";
+        return view("panel>user>index",compact("currentPage","currentSubMenu"));
     }
 }

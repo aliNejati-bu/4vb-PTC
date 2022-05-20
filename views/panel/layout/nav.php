@@ -3,30 +3,30 @@
 
         <li class="dropdown notification-list dropdown d-none d-lg-inline-block ml-2">
             <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="assets/images/flags/us.jpg" alt="lang-image" height="12">
+                <img src="/assets/images/flags/us.jpg" alt="lang-image" height="12">
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/germany.jpg" alt="lang-image" class="mr-1" height="12"> <span
+                    <img src="/assets/images/flags/germany.jpg" alt="lang-image" class="mr-1" height="12"> <span
                         class="align-middle">آلمانی</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/italy.jpg" alt="lang-image" class="mr-1" height="12"> <span
+                    <img src="/assets/images/flags/italy.jpg" alt="lang-image" class="mr-1" height="12"> <span
                         class="align-middle">ایتالیایی</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/spain.jpg" alt="lang-image" class="mr-1" height="12"> <span
+                    <img src="/assets/images/flags/spain.jpg" alt="lang-image" class="mr-1" height="12"> <span
                         class="align-middle">اسپانیایی</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <img src="assets/images/flags/russia.jpg" alt="lang-image" class="mr-1" height="12"> <span
+                    <img src="/assets/images/flags/russia.jpg" alt="lang-image" class="mr-1" height="12"> <span
                         class="align-middle">روسی</span>
                 </a>
 
@@ -76,7 +76,7 @@
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                         <div class="notify-icon">
-                            <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                            <img src="/assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
                         <p class="notify-details">امید حسین آبادی</p>
                         <p class="text-muted mb-0 user-msg">
                             <small>اووو ! این مدیر طراحی خوب و عالی به نظر می رسد</small>
@@ -126,7 +126,7 @@
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                <img src="/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                 <span class="pro-user-name ml-1">
                                 محمد فلاح  <i class="mdi mdi-chevron-down"></i>
                             </span>
@@ -177,14 +177,14 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo text-center">
+        <a href="/index.html" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="assets/images/logo-light.png" alt="" height="25">
+                            <img src="/assets/images/logo-light.png" alt="" height="25">
                             <!-- <span class="logo-lg-text-light">UBold</span> -->
                         </span>
             <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
-                            <img src="assets/images/logo-sm.png" alt="" height="28">
+                            <img src="/assets/images/logo-sm.png" alt="" height="28">
                         </span>
         </a>
     </div>

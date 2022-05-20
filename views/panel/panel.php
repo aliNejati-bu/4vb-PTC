@@ -67,18 +67,18 @@
 <!-- END wrapper -->
 
 <!-- Vendor js -->
-<script src="assets/js/vendor.min.js"></script>
+<script src="/assets/js/vendor.min.js"></script>
 
 <!--C3 Chart-->
-<script src="assets/libs/d3/d3.min.js"></script>
-<script src="assets/libs/c3/c3.min.js"></script>
+<script src="/assets/libs/d3/d3.min.js"></script>
+<script src="/assets/libs/c3/c3.min.js"></script>
 
-<script src="assets/libs/echarts/echarts.min.js"></script>
+<script src="/assets/libs/echarts/echarts.min.js"></script>
 
-<script src="assets/js/pages/dashboard.init.js"></script>
+<script src="/assets/js/pages/dashboard.init.js"></script>
 
 <!-- App js -->
-<script src="assets/js/app.min.js"></script>
+<script src="/assets/js/app.min.js"></script>
 
 </body>
 
