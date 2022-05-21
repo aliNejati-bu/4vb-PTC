@@ -26,10 +26,15 @@ class Boot
 
         $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
 
-        try{
+        try {
             $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-        }catch (\Phroute\Phroute\Exception\HttpRouteNotFoundException $exception){
-            $response = view(get404ViewName());
+        } catch (\Phroute\Phroute\Exception\HttpRouteNotFoundException $exception) {
+            if (isHtmlAccept()) {
+                $response = view(get404ViewName());
+            } else {
+                $response = json_encode(["status"=>false,"messages"=>["404 router not founded."]]);
+                header("Content-Type: application/json");
+            }
             http_response_code(404);
         }
 
@@ -98,7 +103,11 @@ class Boot
     public static function errorReporter()
     {
         $whoops = new \Whoops\Run;
-        $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+        if (isHtmlAccept()) {
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+        } else {
+            $whoops->pushHandler(new \Whoops\Handler\JsonResponseHandler());
+        }
         $whoops->register();
     }
 }

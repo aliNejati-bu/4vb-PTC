@@ -97,3 +97,21 @@ function get404ViewName(): string
 {
     return \PTC\Classes\Config::getInstance()->getAllConfig("view")["404"];
 }
+
+
+/**
+ * @return bool
+ */
+function isHtmlAccept(): bool
+{
+    return str_contains($_SERVER["HTTP_ACCEPT"], "text/html") || str_contains($_SERVER["HTTP_ACCEPT"], "TEXT/HTML") || str_contains($_SERVER["HTTP_ACCEPT"], "text/htm");
+}
+
+
+/**
+ * @return bool
+ */
+function isJsonAccept(): bool
+{
+    return str_contains($_SERVER["HTTP_ACCEPT"], "application/json") || str_contains($_SERVER["HTTP_ACCEPT"], "application/JSON") || str_contains($_SERVER["HTTP_ACCEPT"], "*/*");
+}
