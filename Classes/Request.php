@@ -8,6 +8,12 @@ use Somnambulist\Components\Validation\Validation;
 class Request
 {
 
+
+    /**
+     * @var bool
+     */
+    public bool $isApi = false;
+
     public ?Auth $auth = null;
     /**
      * @var Request|null

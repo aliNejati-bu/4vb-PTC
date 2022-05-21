@@ -20,8 +20,16 @@ class Boot
         self::errorReporter();
         $router = new RouteCollector();
 
+
+
+
         self::PrepareMiddlewares($router);
 
+
+        $router->group(["prefix" => "/api"], function (RouteCollector $router) {
+            require_once BASE_DIR . DIRECTORY_SEPARATOR . "Router" . DIRECTORY_SEPARATOR . "api.php";
+
+        });
         require_once BASE_DIR . DIRECTORY_SEPARATOR . "Router" . DIRECTORY_SEPARATOR . "web.php";
 
         $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
@@ -32,7 +40,7 @@ class Boot
             if (isHtmlAccept()) {
                 $response = view(get404ViewName());
             } else {
-                $response = json_encode(["status"=>false,"messages"=>["404 router not founded."]]);
+                $response = json_encode(["status" => false, "messages" => ["404 router not founded."]]);
                 header("Content-Type: application/json");
             }
             http_response_code(404);
