@@ -124,3 +124,8 @@ function responseJson(bool $status, array $messages, mixed $data): string
         "data" => $data
     ]);
 }
+
+function sms()
+{
+    return \PTC\Classes\SMS\SMSManager::getInstance();
+}

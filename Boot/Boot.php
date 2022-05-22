@@ -57,6 +57,12 @@ class Boot
         if ($response instanceof Redirect) {
             $response->exec();
         }
+
+        if (is_array($response)) {
+            header("Content-Type: application/json");
+            $response = json_encode($response);
+        }
+
         echo $response;
     }
 

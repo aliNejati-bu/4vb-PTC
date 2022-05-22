@@ -148,7 +148,7 @@ class Request
     /**
      * @return bool|array
      */
-    public function getHeaders(): bool|array
+    public function headers(): bool|array
     {
         return getallheaders();
     }
