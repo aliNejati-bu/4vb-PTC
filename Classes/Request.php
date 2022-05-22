@@ -145,4 +145,12 @@ class Request
         return self::$request;
     }
 
+    /**
+     * @return bool|array
+     */
+    public function getHeaders(): bool|array
+    {
+        return getallheaders();
+    }
+
 }

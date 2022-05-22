@@ -123,4 +123,12 @@ class User extends Model
     {
         return boolval($this->is_admin);
     }
+
+    /**
+     * @return bool
+     */
+    public function isPhoneVerify(): bool
+    {
+        return boolval($this->is_phone_verified);
+    }
 }

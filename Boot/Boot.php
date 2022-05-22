@@ -21,12 +21,15 @@ class Boot
         $router = new RouteCollector();
 
 
+        $router->filter("api", function () {
+            header("Content-Type: application/json");
+        });
 
 
         self::PrepareMiddlewares($router);
 
 
-        $router->group(["prefix" => "/api"], function (RouteCollector $router) {
+        $router->group(["prefix" => "/api", 'before' => 'api'], function (RouteCollector $router) {
             require_once BASE_DIR . DIRECTORY_SEPARATOR . "Router" . DIRECTORY_SEPARATOR . "api.php";
 
         });

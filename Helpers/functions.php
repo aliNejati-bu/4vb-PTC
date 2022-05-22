@@ -115,3 +115,12 @@ function isJsonAccept(): bool
 {
     return str_contains($_SERVER["HTTP_ACCEPT"], "application/json") || str_contains($_SERVER["HTTP_ACCEPT"], "application/JSON") || str_contains($_SERVER["HTTP_ACCEPT"], "*/*");
 }
+
+function responseJson(bool $status, array $messages, mixed $data): string
+{
+    return json_encode([
+        "status" => $status,
+        "messages" => $messages,
+        "data" => $data
+    ]);
+}
