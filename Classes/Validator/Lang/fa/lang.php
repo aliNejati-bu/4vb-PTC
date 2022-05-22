@@ -34,7 +34,7 @@ return [
     'rule.min' => ':attribute باید از :min رقم/تعداد بیشتر باشد.',
     'rule.not_in' => ':attribute نباید مقداری :  :disallowed_values باشد.',
     'rule.numeric' => ':attribute حتما باید عددی باشد.',
-    'rule.phone_number' => ':attribute is not a valid E.164 phone number',
+    'rule.phone_number' => ':attribute شماره تلفن معتبر ایران نیست.',
     'rule.present' => ':attribute must be present',
     'rule.prohibited' => ':attribute is not allowed',
     'rule.prohibited_if' => ':attribute is not allowed if :field has value(s) :values',

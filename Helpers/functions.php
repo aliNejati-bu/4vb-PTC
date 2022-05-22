@@ -1,6 +1,7 @@
 <?php
 
 
+use JetBrains\PhpStorm\ArrayShape;
 use JetBrains\PhpStorm\Pure;
 use PTC\Classes\Auth;
 use PTC\Classes\Messages;
@@ -116,16 +117,30 @@ function isJsonAccept(): bool
     return str_contains($_SERVER["HTTP_ACCEPT"], "application/json") || str_contains($_SERVER["HTTP_ACCEPT"], "application/JSON") || str_contains($_SERVER["HTTP_ACCEPT"], "*/*");
 }
 
-function responseJson(bool $status, array $messages, mixed $data): string
+#[ArrayShape(["status" => "bool", "messages" => "array", "data" => "mixed"])] function responseJson(bool $status, array $messages, mixed $data = null): array
 {
-    return json_encode([
+    return [
         "status" => $status,
         "messages" => $messages,
         "data" => $data
-    ]);
+    ];
 }
 
 function sms()
 {
     return \PTC\Classes\SMS\SMSManager::getInstance();
+}
+
+
+function getActiveCode($n): string
+{
+    $characters = '0123456789';
+    $randomString = '';
+
+    for ($i = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $randomString .= $characters[$index];
+    }
+
+    return $randomString;
 }

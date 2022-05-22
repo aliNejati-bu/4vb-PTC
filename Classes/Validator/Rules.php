@@ -8,6 +8,20 @@ use PTC\Classes\Config;
 
 class Rules
 {
+
+    /**
+     * @return Closure
+     */
+    public static function iranPhoneNumber(): Closure
+    {
+        return function ($value) {
+            if (!preg_match('/^(?:98|\+98|0098|0)?9[0-9]{9}$/', $value)) {
+                return "rule.phone_number";
+            }
+            return true;
+        };
+    }
+
     /**
      * @param $model
      * @param string $field

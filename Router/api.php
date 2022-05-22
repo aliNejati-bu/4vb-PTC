@@ -6,4 +6,6 @@ use Phroute\Phroute\RouteCollector;
  * @var RouteCollector $router
  */
 
-$router->controller("/verify-phone",\PTC\App\Controller\user\VerifyController::class);
+$router->get("/verify-phone", function () {
+    return (new \PTC\App\Controller\user\VerifyController())->generateVerifyCode();
+});
