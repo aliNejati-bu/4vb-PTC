@@ -7,9 +7,9 @@ use Phroute\Phroute\RouteCollector;
  */
 
 $router->get("/verify-phone", function () {
-    return (new \PTC\App\Controller\user\VerifyController())->generateVerifyCode();
-});
+    return (new \PTC\App\Controller\User\VerifyController())->generateVerifyCode();
+}, ["before" => "apiAuthMiddleware"]);
 
-$router->post("/add-phone",function (){
-    return (new \PTC\App\Controller\user\VerifyController())->editPhoneNumber();
-},["before"=>"apiAuthMiddleware"]);
+$router->post("/add-phone", function () {
+    return (new \PTC\App\Controller\User\VerifyController())->editPhoneNumber();
+}, ["before" => "apiAuthMiddleware"]);

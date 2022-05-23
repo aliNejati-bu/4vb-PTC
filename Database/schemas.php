@@ -25,7 +25,7 @@ Capsule::schema()->create('users', function (\Illuminate\Database\Schema\Bluepri
 Capsule::schema()->create('phone_codes', function (\Illuminate\Database\Schema\Blueprint $blueprint) {
     $blueprint->id();
     $blueprint->string("code");
-    $blueprint->string("expire_at");
+    $blueprint->dateTime("expire_at");
     $blueprint->boolean("is_usesd");
     $blueprint->bigInteger("user_id")->unsigned();
     $blueprint->timestamps();
