@@ -3,6 +3,8 @@
 namespace PTC\App\Controller\user;
 
 use JetBrains\PhpStorm\ArrayShape;
+use PTC\Classes\Exception\ValidatorNotFoundException;
+use PTC\Classes\Request;
 use PTC\Classes\SMS\SMSManager;
 
 class VerifyController
@@ -11,9 +13,12 @@ class VerifyController
     /**
      * @param string $phoneNumber
      * @return array
+     * @throws ValidatorNotFoundException
      */
-    #[ArrayShape(["status" => "bool", "messages" => "array", "data" => "mixed"])] public function editPhoneNumber(string $phoneNumber): array
+    #[ArrayShape(["status" => "bool", "messages" => "array", "data" => "mixed"])] public function editPhoneNumber(): array
     {
+        Request::getInstance()->validatePostsAndFiles('addPhoneNumberValidator');
+        $phoneNumber = Request::getInstance()->getValidated()['phone_number'];
         auth()->userModel->is_phone_verified = false;
         auth()->userModel->phone = $phoneNumber;
         $result = auth()->userModel->save();
@@ -28,7 +33,8 @@ class VerifyController
     {
 
         return [
-            "status" => preg_match('/^(?:98|\+98|0098|0)?9[0-9]{9}$/',"0910821490")
+            "status" => preg_match('/^(?:98|\+98|0098|0)?9[0-9]{9}$/', "0910821490")
         ];
     }
+
 }

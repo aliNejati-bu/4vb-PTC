@@ -52,12 +52,17 @@ class Request
     {
     }
 
+
     /**
      * @return array
      */
     public function allPost(): array
     {
-        return $_POST + $_FILES;
+        if (strtolower($this->headers()["Content-Type"]) == "application/json") {
+            return json_decode(file_get_contents('php://input'), true);
+        } else {
+            return $_POST + $_FILES;
+        }
     }
 
 
@@ -74,14 +79,20 @@ class Request
         $this->isValidated = true;
         if ($validateResult->fails()) {
             if ($isRedirectBack) {
-                $redirect = redirect(back());
-                foreach ($validateResult->errors()->firstOfAll() as $name => $value) {
-                    $redirect->with($name, $value);
+                if (isHtmlAccept()) {
+                    $redirect = redirect(back());
+                    foreach ($validateResult->errors()->firstOfAll() as $name => $value) {
+                        $redirect->with($name, $value);
+                    }
+                    foreach ($validateResult->getValidData() as $key => $value) {
+                        $redirect->withMessage($key, $value);
+                    }
+                    $redirect->exec();
+                } else {
+                    header("Content-Type: application/json");
+                    http_response_code(403);
+                    echo json_encode(responseJson(false, $validateResult->errors()->firstOfAll(), "validation filed."));
                 }
-                foreach ($validateResult->getValidData() as $key => $value) {
-                    $redirect->withMessage($key, $value);
-                }
-                $redirect->exec();
             }
             $this->isValidatorError = true;
             $this->errors = $validateResult->errors()->firstOfAll();
