@@ -6,7 +6,7 @@ use Phroute\Phroute\RouteCollector;
  * @var RouteCollector $router
  */
 
-$router->get("/verify-phone", function () {
+$router->get("/send-verify-code", function () {
     return (new \PTC\App\Controller\User\VerifyController())->generateVerifyCode();
 }, ["before" => "apiAuthMiddleware"]);
 
