@@ -20,6 +20,7 @@ class Boot
         self::errorReporter();
         $router = new RouteCollector();
 
+        date_default_timezone_set("Asia/Tehran");
 
         $router->filter("api", function () {
             header("Content-Type: application/json");
