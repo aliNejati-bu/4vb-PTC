@@ -37,6 +37,9 @@ class Melipayamak implements \PTC\Classes\interfaces\SMSSenderInterface
         $result = curl_exec($ch);
         curl_close($ch);
         $result = json_decode($result);
+        if (!isset($result->status)){
+            return false;
+        }
         if ($result->status == "ارسال موفق بود"){
             return true;
         }else{

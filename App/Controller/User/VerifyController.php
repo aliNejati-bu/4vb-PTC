@@ -31,7 +31,10 @@ class VerifyController
 
     #[ArrayShape(["status" => "bool", "messages" => "array", "data" => "mixed"])] public function generateVerifyCode(): array
     {
-
+        if (!auth()->userModel->phone){
+            http_response_code(400);
+            return responseJson(false,[],"user not a phone number.");
+        }
         $code = auth()->userModel->phoneCodes->where("created_at",">",date("Y-m-d H:i:s",time()-120))->first();
         if ($code){
             http_response_code(400);
@@ -52,9 +55,10 @@ class VerifyController
             return responseJson(false,[],"can not add code to database.");
         }
 
-        $result = SMSManager::getInstance()->getSender()->sendCode($code,"09108214909");
+        $result = SMSManager::getInstance()->getSender()->sendCode($code,auth()->userModel->phone);
 
         if (!$result){
+            auth()->userModel->phoneCodes()->where("code",$code)->first()->delete();
             http_response_code(400);
             return responseJson(false,[],"sms not sent.");
         }
