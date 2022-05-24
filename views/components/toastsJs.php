@@ -1,4 +1,4 @@
-<script src="assets/libs/jquery-toast/jquery.toast.min.js"></script>
+<script src="/assets/libs/jquery-toast/jquery.toast.min.js"></script>
 
 <?php
 if (isError()) {
