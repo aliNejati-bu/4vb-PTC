@@ -6,7 +6,7 @@ Capsule::schema()->create('users', function (\Illuminate\Database\Schema\Bluepri
     $blueprint->id();
     $blueprint->string("user_email")->unique();
     $blueprint->string("password");
-    $blueprint->string("phone")->nullable();
+    $blueprint->string("phone")->nullable()->unique();
     /*
      * user type for present type of user account
      * 0: common

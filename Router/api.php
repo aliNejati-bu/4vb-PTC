@@ -13,3 +13,7 @@ $router->get("/send-verify-code", function () {
 $router->post("/add-phone", function () {
     return (new \PTC\App\Controller\User\VerifyController())->editPhoneNumber();
 }, ["before" => "apiAuthMiddleware"]);
+
+$router->post("/verify-phone", function () {
+    return (new \PTC\App\Controller\User\VerifyController())->verifyActiveCode();
+}, ["before" => "apiAuthMiddleware"]);

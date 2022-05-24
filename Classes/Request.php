@@ -92,6 +92,7 @@ class Request
                     header("Content-Type: application/json");
                     http_response_code(403);
                     echo json_encode(responseJson(false, $validateResult->errors()->firstOfAll(), "validation filed."));
+                    die();
                 }
             }
             $this->isValidatorError = true;
