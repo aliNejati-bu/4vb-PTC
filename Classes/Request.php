@@ -90,7 +90,7 @@ class Request
                     $redirect->exec();
                 } else {
                     header("Content-Type: application/json");
-                    http_response_code(403);
+                    http_response_code(400);
                     echo json_encode(responseJson(false, $validateResult->errors()->firstOfAll(), "validation filed."));
                     die();
                 }

@@ -5,9 +5,11 @@ namespace PTC\App\Controller\User;
 use Illuminate\Database\QueryException;
 use JetBrains\PhpStorm\ArrayShape;
 use PTC\App\Model\User;
+use PTC\Classes\Config;
 use PTC\Classes\Exception\ValidatorNotFoundException;
 use PTC\Classes\Request;
 use PTC\Classes\SMS\SMSManager;
+use PTC\Classes\ViewEngine;
 
 class VerifyController
 {
@@ -35,6 +37,9 @@ class VerifyController
         return responseJson(true, [], "phoneNumberEdited");
     }
 
+    /**
+     * @return array
+     */
     #[ArrayShape(["status" => "bool", "messages" => "array", "data" => "mixed"])] public function generateVerifyCode(): array
     {
         if (!auth()->userModel->phone) {
@@ -73,18 +78,34 @@ class VerifyController
     }
 
 
-    public function verifyActiveCode()
+    /**
+     * @return array
+     * @throws ValidatorNotFoundException
+     */
+    #[ArrayShape(["status" => "bool", "messages" => "array", "data" => "mixed"])] public function verifyActiveCode(): array
     {
         Request::getInstance()->validatePostsAndFiles('verifyPhoneNumber');
 
         $result = auth()->userModel->phoneCodes()->where("code", Request::getInstance()->getValidated()["code"])->where("expire_at", ">", date("Y-m-d H:i:s", time()))->first();
-        if (!$result){
+        if (!$result) {
             http_response_code(400);
-            return responseJson(false,[],"Invalid verification code.");
+            return responseJson(false, [], "Invalid verification code.");
         }
 
         auth()->userModel->is_phone_verified = true;
         auth()->userModel->save();
-        return responseJson(true,[],"phone verified.");
+        return responseJson(true, [], "phone verified.");
     }
+
+
+    /**
+     * @return ViewEngine
+     */
+    public function verifyCodeView(): ViewEngine
+    {
+        $appUrl = Config::getInstance()->getAllConfig("app")["app_url"];
+        $title = "تایید شماره موبایل";
+        return view("auth>verifyPhone", compact("title", "appUrl"));
+    }
+
 }

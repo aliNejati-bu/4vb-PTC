@@ -9,6 +9,10 @@ return [
         'signup' => "/sign-up",
         'login' => '/login',
         'panel' => '/panel',
-        'userList' => '/panel/user'
+        'userList' => '/panel/user',
+        'apiAddPhone' => "/api/add-phone",
+        'apiSendVerifyPhone' => '/api/send-verify-code',
+        'apiVerifyPhoneCode' => "/api/verify-phone",
+        'verifyPhone' => '/panel/verify-phone'
     ],
 ];
