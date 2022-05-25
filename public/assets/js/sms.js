@@ -1,5 +1,6 @@
 let addPhoneBtn = document.getElementById("sendMobileButton")
 let addPhoneErrorFlag = false;
+let time = 150;
 addPhoneBtn.addEventListener("click", async (ev) => {
     startLoading();
     let phone = document.getElementById("phone").value;
@@ -32,16 +33,7 @@ addPhoneBtn.addEventListener("click", async (ev) => {
         document.getElementById("phoneFildConteiner").innerHTML = document.getElementById("phoneFildConteiner").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">خطای نا شناخته</li></ul>";
         return
     } else {
-        let result = await fetch(appUrl + sendVerifyCodeRoute, {
-            method: "GET",
-            headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token},
-        });
-        if (result.status != 200) {
-            endLoading();
-            document.getElementById("phone").classList.add("parsley-error");
-            document.getElementById("phoneFildConteiner").innerHTML = document.getElementById("phoneFildConteiner").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">یک کد تایید برای شما ارسال شده لطفا کمی صبر کنید.</li></ul>";
-            return
-        }
+        resend();
         document.getElementById("playGround").innerHTML = `
 <div class="account-box">
                                 <div class="account-logo-box">
@@ -50,7 +42,7 @@ addPhoneBtn.addEventListener("click", async (ev) => {
                                             <img src="/assets/images/logo-dark.png" alt="" height="30">
                                         </a>
                                     </div>
-                                    <h5 class="text-uppercase mb-1 mt-4 alert-success">کد تایید ارسال شد...</h5>
+                                    <h5 id="notifer" class="text-uppercase mb-1 mt-4 alert-success">کد تایید ارسال شد...</h5>
                                     <p class="mb-0">لطفا عبارت شش رقمی پیامک شده را وارد کنید.</p>
                                 </div>
 
@@ -74,7 +66,7 @@ addPhoneBtn.addEventListener("click", async (ev) => {
                                         </div>
                                         <div class="col-6">
                                             <button id="resendCodeBtn" class="btn btn-md btn-block btn-primary waves-effect waves-light ffiy"
-                                                    type="submit" disabled>ارسال مجدد
+                                                    type="submit" >ارسال مجدد
                                                   ( <span id="timerForResend">120</span> )
                                             </button>
                                         </div>
@@ -82,10 +74,37 @@ addPhoneBtn.addEventListener("click", async (ev) => {
                                     <p style="text-align: center;font-size: 2rem" id="loadingBox"></p>
 
                                 </div>
+                            
+                           
+                     <div id="editPhone">
+                     
+</div>
                             </div>
         
         
         `;
+        document.getElementById("resendCodeBtn").disabled = true;
+        setInterval(() => {
+            document.getElementById("timerForResend").innerText = time.toString();
+            if (time != 0) {
+                document.getElementById("resendCodeBtn").disabled = true;
+                time--;
+            } else {
+                document.getElementById("resendCodeBtn").disabled = false;
+            }
+        }, 1000);
+
+        document.getElementById("resendCodeBtn").addEventListener("click", resend);
+        setTimeout(()=>{
+            document.getElementById("editPhone").innerHTML = `
+            <div class="row mt-4 pt-2">
+                                    <div class="col-sm-12 text-center">
+                                        <p class="text-muted mb-0 ">شماره تلفن اشتباه است؟ <a href="${verifyPhone}" class="text-dark ml-1"><b>
+                                                    ویرایش شماره</b></a></p>
+                                    </div>
+                                </div>
+            `;
+        },200000);
     }
 });
 
@@ -103,7 +122,6 @@ let invalidCodeFlag = false;
 
 async function sendCode() {
     startLoading();
-
     let code = document.getElementById('code').value;
     if (code != 6 && !codeFlag) {
         codeFlag = true;
@@ -127,7 +145,7 @@ async function sendCode() {
     if (result.status != 200 && !invalidCodeFlag) {
         invalidCodeFlag = true;
         document.getElementById("code").classList.add("parsley-error");
-        document.getElementById("codeFild").innerHTML = document.getElementById("codeFild").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">کد تایید نا معتبر.</li></ul>";
+        document.getElementById("codeFild").innerHTML = document.getElementById("codeFild").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">کد تایید نا معتبر و یا منقضی شده.</li></ul>";
         endLoading();
     }
 
@@ -135,6 +153,26 @@ async function sendCode() {
         endLoading()
         return "";
     }
-
+    document.getElementById("playGround").innerHTML = "";
     window.location.replace(appUrl + panelRoute);
+}
+
+
+async function resend() {
+    time = 125;
+    fetch(appUrl + sendVerifyCodeRoute, {
+        method: "GET",
+        headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token},
+    }).then(result => {
+        if (result.status != 200) {
+            document.getElementById("notifer").classList.remove("alert-success")
+            document.getElementById("notifer").classList.add("alert-danger");
+            document.getElementById("notifer").innerText = "کد تایید ارسال نشد. (کمی بعد دوباره امتحان کنید.)";
+        } else {
+            document.getElementById("notifer").classList.remove("alert-danger")
+            document.getElementById("notifer").classList.add("alert-success");
+            document.getElementById("notifer").innerText = "کد تایید ارسال شد...";
+        }
+    });
+
 }

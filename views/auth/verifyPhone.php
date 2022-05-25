@@ -107,6 +107,7 @@ use PTC\Classes\Config;
     ?>
     let token = `<?= $_SESSION[$configs['access_token_session_name']] ?>`;
     let panelRoute = '<?= route("panel") ?>';
+    let verifyPhone = '<?= route("verifyPhone")  ?>';
 </script>
 <script src="/assets/js/sms.js"></script>
 </body>
