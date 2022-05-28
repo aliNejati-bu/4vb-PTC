@@ -3,7 +3,7 @@ let addPhoneErrorFlag = false;
 let time = 150;
 let status = 1;
 
-addPhoneBtn.addEventListener("click", async (ev) => {
+const addPhone = async (ev) => {
     startLoading();
     let phone = document.getElementById("phone").value;
     if (phone.length != 11 && !addPhoneErrorFlag) {
@@ -86,6 +86,7 @@ addPhoneBtn.addEventListener("click", async (ev) => {
         
         
         `;
+        status = 2;
         document.getElementById("resendCodeBtn").disabled = true;
         setInterval(() => {
             document.getElementById("timerForResend").innerText = time.toString();
@@ -98,7 +99,7 @@ addPhoneBtn.addEventListener("click", async (ev) => {
         }, 1000);
 
         document.getElementById("resendCodeBtn").addEventListener("click", resend);
-        setTimeout(()=>{
+        setTimeout(() => {
             document.getElementById("editPhone").innerHTML = `
             <div class="row mt-4 pt-2">
                                     <div class="col-sm-12 text-center">
@@ -107,9 +108,11 @@ addPhoneBtn.addEventListener("click", async (ev) => {
                                     </div>
                                 </div>
             `;
-        },200000);
+        }, 200000);
     }
-});
+};
+
+addPhoneBtn.addEventListener("click", addPhone);
 
 
 function startLoading() {
@@ -126,7 +129,7 @@ let invalidCodeFlag = false;
 async function sendCode() {
     startLoading();
     let code = document.getElementById('code').value;
-    if (code != 6 && !codeFlag) {
+    if (code.length != 6 && !codeFlag) {
         codeFlag = true;
         document.getElementById("code").classList.add("parsley-error");
         document.getElementById("codeFild").innerHTML = document.getElementById("codeFild").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">کد تایید نا معتبر.</li></ul>";
@@ -179,3 +182,13 @@ async function resend() {
     });
 
 }
+
+document.addEventListener("keypress", (ev) => {
+    if (ev.keyCode == 13){
+        if (status == 1){
+            addPhone();
+        }else {
+            sendCode();
+        }
+    }
+});

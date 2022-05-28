@@ -4,7 +4,6 @@ namespace PTC\App\Controller\User;
 
 use Illuminate\Database\QueryException;
 use JetBrains\PhpStorm\ArrayShape;
-use PTC\App\Model\User;
 use PTC\Classes\Config;
 use PTC\Classes\Exception\ValidatorNotFoundException;
 use PTC\Classes\Request;
