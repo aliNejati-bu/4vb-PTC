@@ -1,6 +1,8 @@
 let addPhoneBtn = document.getElementById("sendMobileButton")
 let addPhoneErrorFlag = false;
 let time = 150;
+let status = 1;
+
 addPhoneBtn.addEventListener("click", async (ev) => {
     startLoading();
     let phone = document.getElementById("phone").value;
@@ -21,11 +23,12 @@ addPhoneBtn.addEventListener("click", async (ev) => {
             "phone_number": phone
         }),
     });
-    if (result.status == 400) {
+    if (result.status == 409) {
         endLoading();
         let data = await result.json();
+        console.log(data);
         document.getElementById("phone").classList.add("parsley-error");
-        document.getElementById("phoneFildConteiner").innerHTML = document.getElementById("phoneFildConteiner").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">" + data.messages.phone_number + "</li></ul>";
+        document.getElementById("phoneFildConteiner").innerHTML = document.getElementById("phoneFildConteiner").innerHTML + "<ul class=\"parsley-errors-list filled\" id=\"parsley-id-5\"><li class=\"parsley-required\">شماره تلفن تکراری است</li></ul>";
         return
     } else if (result.status != 200) {
         endLoading();
