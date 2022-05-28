@@ -6,6 +6,7 @@ use Illuminate\Database\QueryException;
 use JetBrains\PhpStorm\ArrayShape;
 use PTC\Classes\Config;
 use PTC\Classes\Exception\ValidatorNotFoundException;
+use PTC\Classes\Redirect;
 use PTC\Classes\Request;
 use PTC\Classes\SMS\SMSManager;
 use PTC\Classes\ViewEngine;
@@ -101,10 +102,13 @@ class VerifyController
 
 
     /**
-     * @return ViewEngine
+     * @return Redirect|ViewEngine
      */
-    public function verifyCodeView(): ViewEngine
+    public function verifyCodeView(): Redirect|ViewEngine
     {
+        if (auth()->userModel->isPhoneVerify()) {
+            return redirect(route("panel"));
+        }
         $appUrl = Config::getInstance()->getAllConfig("app")["app_url"];
         $title = "تایید شماره موبایل";
         return view("auth>verifyPhone", compact("title", "appUrl"));
