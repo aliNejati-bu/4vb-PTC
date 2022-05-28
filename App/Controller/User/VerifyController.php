@@ -26,6 +26,9 @@ class VerifyController
             auth()->userModel->is_phone_verified = false;
             auth()->userModel->phone = $phoneNumber;
             $result = auth()->userModel->save();
+            auth()->userModel->phoneCodes()->update([
+                'is_available' => false
+            ]);
         } catch (QueryException $exception) {
             http_response_code(409);
             return responseJson(false, [], "phone exists.");
@@ -86,7 +89,7 @@ class VerifyController
     {
         Request::getInstance()->validatePostsAndFiles('verifyPhoneNumber');
 
-        $result = auth()->userModel->phoneCodes()->where("code", Request::getInstance()->getValidated()["code"])->where("expire_at", ">", date("Y-m-d H:i:s", time()))->first();
+        $result = auth()->userModel->phoneCodes()->where("code", Request::getInstance()->getValidated()["code"])->where("expire_at", ">", date("Y-m-d H:i:s", time()))->where("is_available", true)->first();
         if (!$result) {
             http_response_code(400);
             return responseJson(false, [], "Invalid verification code.");
