@@ -28,6 +28,7 @@ Capsule::schema()->create('phone_codes', function (\Illuminate\Database\Schema\B
     $blueprint->dateTime("expire_at");
     $blueprint->boolean("is_usesd");
     $blueprint->bigInteger("user_id")->unsigned();
+    $blueprint->boolean("is_available")->default(true);
     $blueprint->timestamps();
     $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
 });
