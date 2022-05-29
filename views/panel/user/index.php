@@ -6,6 +6,7 @@
     <link href="/assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css"/>
     <?php require viewPath("panel>layout>heade") ?>
+    <title>user list</title>
 </head>
 
 <body>

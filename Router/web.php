@@ -14,7 +14,13 @@ $router->group(["before" => ["authMiddleware"], "prefix" => route("panel")], fun
     $router->get("/", function () {
         return (new PanelController)->index();
     });
-    $router->controller("/user", \PTC\App\Controller\Admin\UserController::class);
+    $router->controller("/user", \PTC\App\Controller\Admin\UserController::class,
+        ["before" =>
+            ["onlyVerifyPhone"],
+        ]
+    );
+
+
     $router->get("/verify-phone", function () {
         return (new \PTC\App\Controller\User\VerifyController())->verifyCodeView();
     });
