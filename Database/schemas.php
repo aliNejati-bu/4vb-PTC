@@ -46,7 +46,7 @@ Capsule::schema()->create('email_links', function (\Illuminate\Database\Schema\B
 Capsule::schema()->create('slugs', function (\Illuminate\Database\Schema\Blueprint $blueprint) {
     $blueprint->id();
     $blueprint->string("slug")->unique();
-    $blueprint->boolean("is_direct");
+    $blueprint->boolean("is_direct")->default(false);
     $blueprint->bigInteger("user_id")->unsigned();
     $blueprint->timestamps();
     $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("cascade");

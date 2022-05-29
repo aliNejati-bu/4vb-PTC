@@ -32,6 +32,18 @@
                         </li>
                     <?php endif; ?>
                 <?php endif; ?>
+
+                <li class="menu-title">اسلاگ ها</li>
+                <li>
+                    <a href="javascript: void(0);" aria-expanded="false">
+                        <i class="far fa-user"></i>
+                        <span>مدیریت slug ها</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                        <li><a href="<?= route('addSlug') ?>">اضافه کردن slug</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- End Sidebar -->

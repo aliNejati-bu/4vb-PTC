@@ -24,5 +24,9 @@ $router->group(["before" => ["authMiddleware"], "prefix" => route("panel")], fun
     $router->get("/verify-phone", function () {
         return (new \PTC\App\Controller\User\VerifyController())->verifyCodeView();
     });
+
+
+    $router->controller('/slug', \PTC\App\Controller\User\Slug\SlugController::class);
+
 });
 
