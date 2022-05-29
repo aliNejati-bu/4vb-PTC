@@ -3,6 +3,7 @@
 
 <head>
     <?php require viewPath("panel>layout>heade")?>
+    <title>panel</title>
 </head>
 
 <body>
