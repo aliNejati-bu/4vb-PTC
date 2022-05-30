@@ -68,7 +68,7 @@ class IndexController
         if (!$loginStatus) {
             return redirect(back())->with("error", "نام کاربری و رمز عبور همخوانی ندارد.");
         }
-        return redirect(route("panel"))->withMessage('m', "ورود موفقیت آمیز بود.");
+        return redirect(route("panel"))->withMessage('message', "ورود موفقیت آمیز بود.");
     }
 
 

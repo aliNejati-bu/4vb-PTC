@@ -12,7 +12,8 @@ return [
     // default variables passed to views
     "default_variables" => [
         "base" => BASE_DIR . DIRECTORY_SEPARATOR . "views",
-        "dirSep" => DIRECTORY_SEPARATOR
+        "dirSep" => DIRECTORY_SEPARATOR,
+        "url" => \PTC\Classes\Config::getInstance()->getAllConfig("app")["app_url"]
     ],
     "404" => "err>404"
 ];

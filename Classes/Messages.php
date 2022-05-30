@@ -80,6 +80,11 @@ class Messages
         return count($this->errors) != 0;
     }
 
+    public function isMessage()
+    {
+        return count($this->messages) != 0;
+    }
+
     public function getError(string $errorName, mixed $default = false)
     {
         return $this->errors[$errorName] ?? $default;

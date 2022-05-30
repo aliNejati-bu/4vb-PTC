@@ -2,6 +2,7 @@
 <html lang="fa">
 
 <head>
+    <?php require $base . $dirSep . "components" . $dirSep . "toastCss.php" ?>
     <?php require viewPath("panel>layout>heade")?>
     <title>panel</title>
 </head>
@@ -82,7 +83,7 @@
 
 <!-- App js -->
 <script src="/assets/js/app.min.js"></script>
-
+<?php require $base . $dirSep . "components" . $dirSep . "toastsJs.php" ?>
 </body>
 
 </html>

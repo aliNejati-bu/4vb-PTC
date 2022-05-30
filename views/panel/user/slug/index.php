@@ -2,6 +2,7 @@
 <html lang="fa">
 
 <head>
+    <?php require $base . $dirSep . "components" . $dirSep . "toastCss.php" ?>
     <link href="/assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css"/>
     <link href="/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css"/>
@@ -182,19 +183,27 @@
                                                         </thead>
                                                         <tbody>
 
+                                                        <?php
 
-                                                        <tr role="row" class="odd">
-                                                            <td>12</td>
-                                                            <td>علی</td>
-                                                            <td style="text-align: center">electrocellco@gmail.com</td>
-                                                            <td style="text-align: center">09108214909</td>
-                                                            <td style="text-align: center"><span
-                                                                        class="badge label-table badge-success">فعال</span>
-                                                            </td>
-                                                            <td style="text-align: center"><span
-                                                                        class="badge label-table badge-success">فعال</span>
-                                                            </td>
-                                                        </tr>
+                                                        foreach ($slugs as $slug){
+                                                            ?>
+                                                            <tr role="row" class="odd">
+                                                                <td><?= $slug->id ?></td>
+                                                                <td><?= $slug->slug ?></td>
+                                                                <td><a href="<?= $url."/".$slug->slug ?>">کلیک کنید</a></td>
+                                                                <td style="text-align: center">09108214909</td>
+                                                                <td style="text-align: center"><span
+                                                                            class="badge label-table badge-success">فعال</span>
+                                                                </td>
+                                                                <td style="text-align: center"><span
+                                                                            class="badge label-table badge-success">فعال</span>
+                                                                </td>
+                                                            </tr>
+                                                        <?php
+                                                        }
+
+                                                        ?>
+
 
                                                         </tbody>
                                                     </table>
@@ -254,10 +263,7 @@
 
 <!-- App js -->
 <script src="/assets/js/app.min.js"></script>
-<script>
-
-
-</script>
+<?php require $base . $dirSep . "components" . $dirSep . "toastsJs.php" ?>
 </body>
 
 </html>

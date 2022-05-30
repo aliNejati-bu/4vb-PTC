@@ -144,3 +144,22 @@ function getActiveCode($n): string
 
     return $randomString;
 }
+
+
+/**
+ * @return bool
+ */
+function isMessage(): bool
+{
+    return Messages::getInstance()->isMessage();
+}
+
+/**
+ * @return array|mixed|string[]
+ */
+function messages(): mixed
+{
+    return Messages::getInstance()->messages;
+}
+
+
