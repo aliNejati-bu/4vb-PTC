@@ -55,6 +55,7 @@ class Redirect
         $_SESSION["messages"] = $messages;
         header("Location: " . $this->target);
         die();
+        // TODO: fix bug add errors and messages.
     }
 
 }

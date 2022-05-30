@@ -16,6 +16,7 @@ return [
         'verifyPhone' => '/panel/verify-phone',
 
         // user routes.
-        'addSlug' => '/panel/slug'
+        'addSlug' => '/panel/slug',
+        'addLink' => '/panel/slug/link'
     ],
 ];

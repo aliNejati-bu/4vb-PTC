@@ -107,7 +107,8 @@
                                                     <div class="form-group">
                                                         <label for="inputAddress" class="col-form-label">آدرس
                                                             اسلاگ</label>
-                                                        <input value="<?= $randomString ?>" type="text" class="form-control"
+                                                        <input value="<?= $randomString ?>" type="text"
+                                                               class="form-control"
                                                                name="slug"
                                                                id="inputAddress"
                                                                placeholder="آدرس اسلاگ">
@@ -118,7 +119,7 @@
                                                             data-dismiss="modal">بستن
                                                     </button>
                                                     <button type="submit"
-                                                            class="btn btn-primary waves-effect waves-light" >
+                                                            class="btn btn-primary waves-effect waves-light">
                                                         ذخیره تغییرات
                                                     </button>
                                                 </div>
@@ -179,23 +180,94 @@
                                                                 aria-label="تاریخ ایجاد: activate to sort column ascending">
                                                                 تاریخ ایجاد
                                                             </th>
+                                                            <th class="sorting" tabindex="0"
+                                                                aria-controls="datatable" rowspan="1"
+                                                                colspan="1" style="width: 146.4px;"
+                                                                aria-label="عملیات: activate to sort column ascending">
+                                                                عملیات
+                                                            </th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
 
                                                         <?php
 
-                                                        foreach ($slugs as $slug){
+                                                        foreach ($slugs as $slug) {
                                                             ?>
                                                             <tr role="row" class="odd">
                                                                 <td><?= $slug->id ?></td>
                                                                 <td><?= $slug->slug ?></td>
-                                                                <td><a href="<?= $url."/".$slug->slug ?>">کلیک کنید</a></td>
-                                                                <td><?= $slug->is_direct ? '<span class="badge label-table badge-success">لینک مستقیم</span>':'<span class="badge label-table badge-danger">مستقیم نیست</span>' ?></td>
+                                                                <td><a href="<?= $url . "/" . $slug->slug ?>">کلیک
+                                                                        کنید</a></td>
+                                                                <td><?= $slug->is_direct ? '<span class="badge label-table badge-success">لینک مستقیم</span>' : '<span class="badge label-table badge-danger">مستقیم نیست</span>' ?></td>
                                                                 <td><?= $slug->clicksCount() ?></td>
                                                                 <td><?= $slug->created_at ?></td>
+                                                                <td>
+                                                                    <div class="btn-group">
+                                                                        <button type="button"
+                                                                                class="btn btn-warning dropdown-toggle waves-effect"
+                                                                                data-toggle="dropdown"
+                                                                                aria-expanded="false"> عملیات <i
+                                                                                    class="mdi mdi-chevron-down"></i>
+                                                                        </button>
+                                                                        <div class="dropdown-menu">
+                                                                            <a class="dropdown-item" data-toggle="modal"
+                                                                               data-target="#create_link_<?= $slug->id ?>"
+                                                                               href="#">ایجاد لینک</a>
+                                                                            <a class="dropdown-item" href="#">کشویی
+                                                                                لینک</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                             </tr>
-                                                        <?php
+
+                                                            <!-- Create Link -->
+                                                            <div id="create_link_<?= $slug->id ?>" class="modal fade"
+                                                                 tabindex="-1" role="dialog" aria-hidden="true">
+
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-hidden="true">×
+                                                                            </button>
+                                                                            <h4 class="modal-title" id="myModalLabel">
+                                                                                ایجاد لینک جدید</h4>
+                                                                        </div>
+                                                                        <form method="post"
+                                                                              action="<?= route("addLink") ?>">
+                                                                            <div class="modal-body">
+                                                                                <div class="form-group">
+                                                                                    <label for="inputAddress"
+                                                                                           class="col-form-label">آدرس
+                                                                                        مقصد</label>
+                                                                                    <input type="text"
+                                                                                           class="form-control"
+                                                                                           name="target_link"
+                                                                                           id="inputAddress"
+                                                                                           placeholder="آدرس مقصد"
+                                                                                           required>
+                                                                                    <input type="hidden" name="slug_id"
+                                                                                           value="<?= $slug->id ?>">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                        class="btn btn-secondary waves-effect"
+                                                                                        data-dismiss="modal">بستن
+                                                                                </button>
+                                                                                <button type="submit"
+                                                                                        class="btn btn-primary waves-effect waves-light">
+                                                                                    ذخیره تغییرات
+                                                                                </button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <?php
                                                         }
 
                                                         ?>
