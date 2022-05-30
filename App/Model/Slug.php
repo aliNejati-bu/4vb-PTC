@@ -41,4 +41,12 @@ class Slug extends Model
     {
         return $this->hasMany(Click::class);
     }
+
+    /**
+     * @return int
+     */
+    public function clicksCount(): int
+    {
+        return $this->clicks()->count();
+    }
 }

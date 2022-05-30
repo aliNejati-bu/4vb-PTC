@@ -191,13 +191,9 @@
                                                                 <td><?= $slug->id ?></td>
                                                                 <td><?= $slug->slug ?></td>
                                                                 <td><a href="<?= $url."/".$slug->slug ?>">کلیک کنید</a></td>
-                                                                <td style="text-align: center">09108214909</td>
-                                                                <td style="text-align: center"><span
-                                                                            class="badge label-table badge-success">فعال</span>
-                                                                </td>
-                                                                <td style="text-align: center"><span
-                                                                            class="badge label-table badge-success">فعال</span>
-                                                                </td>
+                                                                <td><?= $slug->is_direct ? '<span class="badge label-table badge-success">لینک مستقیم</span>':'<span class="badge label-table badge-danger">مستقیم نیست</span>' ?></td>
+                                                                <td><?= $slug->clicksCount() ?></td>
+                                                                <td><?= $slug->created_at ?></td>
                                                             </tr>
                                                         <?php
                                                         }
