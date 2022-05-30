@@ -107,7 +107,7 @@
                                                     <div class="form-group">
                                                         <label for="inputAddress" class="col-form-label">آدرس
                                                             اسلاگ</label>
-                                                        <input type="text" class="form-control"
+                                                        <input value="<?= $randomString ?>" type="text" class="form-control"
                                                                name="slug"
                                                                id="inputAddress"
                                                                placeholder="آدرس اسلاگ">

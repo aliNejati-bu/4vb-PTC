@@ -12,7 +12,8 @@ class SlugController
     public function getIndex(): ViewEngine
     {
         $slugs = auth()->userModel->slugs()->get();
-        return view('panel>user>slug>index',compact("slugs"));
+        $randomString = getRandomString(6).auth()->userModel->id;
+        return view('panel>user>slug>index',compact("slugs","randomString"));
     }
 
     /**
