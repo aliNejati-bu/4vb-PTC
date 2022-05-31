@@ -214,8 +214,9 @@
                                                                             <a class="dropdown-item" data-toggle="modal"
                                                                                data-target="#create_link_<?= $slug->id ?>"
                                                                                href="#">ایجاد لینک</a>
-                                                                            <a class="dropdown-item" href="#">کشویی
-                                                                                لینک</a>
+                                                                            <a class="dropdown-item" data-toggle="modal"
+                                                                               data-target="#link_list_<?= $slug->id ?>"
+                                                                               href="#">لیست لینک ها</a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -267,6 +268,7 @@
                                                                 </div>
                                                             </div>
 
+
                                                             <?php
                                                         }
 
@@ -275,6 +277,70 @@
 
                                                         </tbody>
                                                     </table>
+                                                    <?php
+                                                    foreach ($slugs as $slug) {
+                                                        ?>
+                                                        <div id="link_list_<?= $slug->id ?>" class="modal fade"
+                                                             tabindex="-1" role="dialog" aria-hidden="true">
+
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal"
+                                                                                aria-hidden="true">×
+                                                                        </button>
+                                                                        <h4 class="modal-title" id="myModalLabel">
+                                                                            ایجاد لینک جدید</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="card-box">
+                                                                            <h4 class="header-title">لیست همه اسلاگ های
+                                                                                این لینک</h4>
+                                                                            <p class="sub-header">
+                                                                                در این مودال همه لینک های سلاگ را
+                                                                                میبینید.
+                                                                            </p>
+
+                                                                            <div class="table-responsive">
+
+                                                                                <table class="table table-striped mb-0">
+                                                                                    <thead>
+                                                                                    <tr>
+                                                                                        <th>شناسه لینک</th>
+                                                                                        <th>آردس هدف</th>
+                                                                                        <th>تعداد کلیک ها</th>
+                                                                                    </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                    <?php foreach ($slug->links as $link): ?>
+                                                                                        <tr>
+                                                                                            <th scope="row"><?= $link->id ?> </th>
+                                                                                            <td><a href="<?= $link->target_link ?>"><?= $link->target_link ?></a></td>
+                                                                                            <td><?= $link->clicksCount() ?></td>
+                                                                                        </tr>
+                                                                                    <?php endforeach; ?>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        s
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                                class="btn btn-secondary waves-effect"
+                                                                                data-dismiss="modal">بستن
+                                                                        </button>
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary waves-effect waves-light">
+                                                                            ذخیره تغییرات
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php
+                                                    } ?>
                                                 </div>
                                             </div>
 
@@ -333,5 +399,8 @@
 <script src="/assets/js/app.min.js"></script>
 <?php require $base . $dirSep . "components" . $dirSep . "toastsJs.php" ?>
 </body>
-
+<?php
+// TODO: اضافه کردن ترتیب لینک ها
+// TODO: اضافه کردن لینک هدف برای هر لینک
+?>
 </html>

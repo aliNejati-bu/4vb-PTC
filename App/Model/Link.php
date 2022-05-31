@@ -34,4 +34,9 @@ class Link extends Model
         return $this->hasMany(Click::class);
     }
 
+    public function clicksCount()
+    {
+        return $this->clicks()->count();
+    }
+
 }
