@@ -73,6 +73,15 @@ class User extends Model
     }
 
 
+    /**
+     * @return HasMany
+     */
+    public function clicks(): HasMany
+    {
+        return $this->hasMany(Click::class);
+    }
+
+
     public static function getUserByEmailAndPassword(string $email, string $password)
     {
         $user = self::where("user_email", $email)->first();
@@ -141,9 +150,9 @@ class User extends Model
     {
         if ($this->user_type == 2) {
             return true;
-        }elseif ($this->user_type == 1){
+        } elseif ($this->user_type == 1) {
             return $this->slugs()->count() < 30;
-        }else{
+        } else {
             return $this->slugs()->count() < 5;
         }
     }

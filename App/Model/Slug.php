@@ -15,7 +15,8 @@ class Slug extends Model
     protected $fillable = [
         "slug",
         "is_direct",
-        "user_id"
+        "user_id",
+        "target_link"
     ];
 
     /**

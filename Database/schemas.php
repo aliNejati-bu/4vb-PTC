@@ -48,6 +48,7 @@ Capsule::schema()->create('slugs', function (\Illuminate\Database\Schema\Bluepri
     $blueprint->string("slug")->unique();
     $blueprint->boolean("is_direct")->default(false);
     $blueprint->bigInteger("user_id")->unsigned();
+    $blueprint->string("target_link");
     $blueprint->timestamps();
     $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
 });
@@ -58,8 +59,6 @@ Capsule::schema()->create('links', function (\Illuminate\Database\Schema\Bluepri
     $blueprint->bigInteger('slug_id')->unsigned();
     $blueprint->timestamps();
     $blueprint->foreign("slug_id")->references("id")->on("slugs")->onDelete("cascade");
-
-
 });
 
 
@@ -68,11 +67,13 @@ Capsule::schema()->create('clicks', function (\Illuminate\Database\Schema\Bluepr
     $blueprint->string("clicker_ip")->index();
     $blueprint->bigInteger('slug_id')->unsigned();
     $blueprint->bigInteger("link_id")->unsigned();
+    $blueprint->bigInteger("user_id")->unsigned();
     $blueprint->string("refer", 1000);
     $blueprint->timestamps();
 
-    $blueprint->foreign("slug_id")->references("id")->on("slugs")->onDelete("cascade");
-    $blueprint->foreign("link_id")->references("id")->on("links")->onDelete("cascade");
+    $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("update");
+    $blueprint->foreign("slug_id")->references("id")->on("slugs")->onDelete("update");
+    $blueprint->foreign("link_id")->references("id")->on("links")->onDelete("update");
 
 });
 
@@ -125,3 +126,6 @@ Capsule::schema()->create("user_session_activities", function (\Illuminate\Datab
     $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
 });
 
+
+
+// TODO: تنظیم محدودیت های دیتا بیسی روی داده ها

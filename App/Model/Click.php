@@ -15,7 +15,8 @@ class Click extends Model
         "clicker_ip",
         "slug_id",
         "link_id",
-        "refer"
+        "refer",
+        "user_id"
     ];
 
     /**
@@ -32,6 +33,14 @@ class Click extends Model
     public function link(): BelongsTo
     {
         return $this->belongsTo(Link::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
