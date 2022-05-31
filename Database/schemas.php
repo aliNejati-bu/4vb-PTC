@@ -65,15 +65,15 @@ Capsule::schema()->create('links', function (\Illuminate\Database\Schema\Bluepri
 Capsule::schema()->create('clicks', function (\Illuminate\Database\Schema\Blueprint $blueprint) {
     $blueprint->id();
     $blueprint->string("clicker_ip")->index();
-    $blueprint->bigInteger('slug_id')->unsigned();
-    $blueprint->bigInteger("link_id")->unsigned();
-    $blueprint->bigInteger("user_id")->unsigned();
+    $blueprint->bigInteger('slug_id')->unsigned()->nullable();
+    $blueprint->bigInteger("link_id")->unsigned()->nullable();
+    $blueprint->bigInteger("user_id")->unsigned()->nullable();
     $blueprint->string("refer", 1000);
     $blueprint->timestamps();
 
-    $blueprint->foreign("user_id")->references("id")->on("users")->onDelete("update");
-    $blueprint->foreign("slug_id")->references("id")->on("slugs")->onDelete("update");
-    $blueprint->foreign("link_id")->references("id")->on("links")->onDelete("update");
+    $blueprint->foreign("user_id")->references("id")->on("users")->nullOnDelete();
+    $blueprint->foreign("slug_id")->references("id")->on("slugs")->nullOnDelete();
+    $blueprint->foreign("link_id")->references("id")->on("links")->nullOnDelete();
 
 });
 
