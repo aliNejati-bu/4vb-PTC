@@ -84,9 +84,6 @@ class Request
                     foreach ($validateResult->errors()->firstOfAll() as $name => $value) {
                         $redirect->with($name, $value);
                     }
-                    foreach ($validateResult->getValidData() as $key => $value) {
-                        $redirect->withMessage($key, $value);
-                    }
                     $redirect->exec();
                 } else {
                     header("Content-Type: application/json");
