@@ -49,6 +49,7 @@ class SlugController
         if (str_contains(request()->getValidated()["target_link"], Config::getInstance()->getAllConfig("app")["app_url"])) {
             return \redirect(back())->with("error", "نمیتوانید لینک های کوتاه شده از مارا کوتاه کنید.");
         }
+
         try {
             $result = auth()->userModel->slugs()->where("id", request()->getValidated()["slug_id"])->first();
             if (!$result) {

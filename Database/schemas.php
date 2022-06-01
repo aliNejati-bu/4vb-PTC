@@ -57,6 +57,7 @@ Capsule::schema()->create('links', function (\Illuminate\Database\Schema\Bluepri
     $blueprint->id();
     $blueprint->string("target_link", 1000);
     $blueprint->bigInteger('slug_id')->unsigned();
+    $blueprint->string("order");
     $blueprint->timestamps();
     $blueprint->foreign("slug_id")->references("id")->on("slugs")->onDelete("cascade");
 });
