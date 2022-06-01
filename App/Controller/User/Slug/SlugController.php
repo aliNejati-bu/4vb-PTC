@@ -24,6 +24,9 @@ class SlugController
     public function postIndex(): Redirect
     {
         request()->validatePostsAndFiles("createSlugValidator");
+        if (str_contains(request()->getValidated()["target_link"], Config::getInstance()->getAllConfig("app")["app_url"])) {
+            return \redirect(back())->with("error", "نمیتوانید لینک های کوتاه شده از مارا کوتاه کنید.");
+        }
         try {
             $result = auth()->userModel->slugs()->create(request()->getValidated());
             if (!$result) {

@@ -113,6 +113,16 @@
                                                                id="inputAddress"
                                                                placeholder="آدرس اسلاگ">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="inputAddress" class="col-form-label">لینک حدف
+                                                            اسلاگ</label>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="target_link"
+                                                               id="inputAddress"
+                                                               placeholder="آدرس هدف"
+                                                               required>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary waves-effect"
@@ -316,7 +326,9 @@
                                                                                     <?php foreach ($slug->links as $link): ?>
                                                                                         <tr>
                                                                                             <th scope="row"><?= $link->id ?> </th>
-                                                                                            <td><a href="<?= $link->target_link ?>"><?= $link->target_link ?></a></td>
+                                                                                            <td>
+                                                                                                <a href="<?= $link->target_link ?>"><?= $link->target_link ?></a>
+                                                                                            </td>
                                                                                             <td><?= $link->clicksCount() ?></td>
                                                                                         </tr>
                                                                                     <?php endforeach; ?>
@@ -401,6 +413,7 @@
 </body>
 <?php
 // TODO: اضافه کردن ترتیب لینک ها
-// TODO: اضافه کردن لینک هدف برای هر لینک
+// TODO: ایجاد لینک های مستقیم
+// TODO: ویرایش اسلاگ
 ?>
 </html>
