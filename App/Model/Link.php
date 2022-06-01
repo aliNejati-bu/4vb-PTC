@@ -15,7 +15,8 @@ class Link extends Model
 
     protected $fillable = [
         "target_link",
-        "slug_id"
+        "slug_id",
+        'order'
     ];
 
     /**

@@ -262,6 +262,17 @@
                                                                                     <input type="hidden" name="slug_id"
                                                                                            value="<?= $slug->id ?>">
                                                                                 </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="inputAddress"
+                                                                                           class="col-form-label">
+                                                                                     ترتیب</label>
+                                                                                    <input type="number"
+                                                                                           class="form-control"
+                                                                                           name="order"
+                                                                                           id="inputAddress"
+                                                                                           placeholder="ترتیب"
+                                                                                           required>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button"
@@ -320,6 +331,7 @@
                                                                                         <th>شناسه لینک</th>
                                                                                         <th>آردس هدف</th>
                                                                                         <th>تعداد کلیک ها</th>
+                                                                                        <th>ترتیب</th>
                                                                                     </tr>
                                                                                     </thead>
                                                                                     <tbody>
@@ -330,13 +342,13 @@
                                                                                                 <a href="<?= $link->target_link ?>"><?= $link->target_link ?></a>
                                                                                             </td>
                                                                                             <td><?= $link->clicksCount() ?></td>
+                                                                                            <td><?= $link->order ?></td>
                                                                                         </tr>
                                                                                     <?php endforeach; ?>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                         </div>
-                                                                        s
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button"

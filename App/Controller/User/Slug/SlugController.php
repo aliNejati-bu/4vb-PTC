@@ -50,6 +50,17 @@ class SlugController
             return \redirect(back())->with("error", "نمیتوانید لینک های کوتاه شده از مارا کوتاه کنید.");
         }
 
+        $sameOrderResult = auth()->userModel
+            ->slugs()
+            ->where("id", request()->getValidated()["slug_id"])
+            ->first()
+            ->links()
+            ->where("order", request()->getValidated()["order"])
+            ->first();
+        if ($sameOrderResult) {
+            return \redirect(back())->with("error", "یک لینک با همین جایگاه برای این اسلاگ وجود دارد.");
+        }
+
         try {
             $result = auth()->userModel->slugs()->where("id", request()->getValidated()["slug_id"])->first();
             if (!$result) {
